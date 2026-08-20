@@ -5,8 +5,11 @@ import { useState, useEffect, useCallback } from 'react';
 let authToken = null;
 export const setToken = (t) => { authToken = t; };
 
+const configuredApiBase = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+const apiBase = configuredApiBase || '/api';
+
 export async function api(path, options = {}) {
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${apiBase}${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',

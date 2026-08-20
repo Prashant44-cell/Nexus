@@ -197,10 +197,10 @@ class SupportTicketAsset(BaseModel):
 
 # API Request Models
 class UserSignupRequest(BaseModel):
-    username: str
-    password: str
-    full_name: str
-    email: str
+    username: str = Field(..., min_length=3, max_length=64)
+    password: str = Field(..., min_length=8, max_length=128)
+    full_name: str = Field(..., min_length=2, max_length=120)
+    email: str = Field(..., min_length=3, max_length=254)
     user_role: UserRole = UserRole.CUSTOMER
     institution: str = "Nexus Global Reserve Bank"
     department: str = "Retail & Wealth Management"
@@ -208,8 +208,8 @@ class UserSignupRequest(BaseModel):
     wallet_address: Optional[str] = None
 
 class UserLoginRequest(BaseModel):
-    username: str
-    password: str
+    username: str = Field(..., min_length=1, max_length=254)
+    password: str = Field(..., min_length=8, max_length=128)
 
 class UserUpdateRequest(BaseModel):
     user_id: str
@@ -312,25 +312,25 @@ class TrustEvaluationResult(BaseModel):
 class TransferRequest(BaseModel):
     sender_account: str
     receiver_account: str
-    amount: float
+    amount: float = Field(..., gt=0, le=250000)
     currency: str = "INR"
     description: str = "Instant Blockchain Transfer"
     signature: Optional[str] = None
 
 class UPIPaymentRequest(BaseModel):
     vpa: str
-    amount: float
+    amount: float = Field(..., gt=0, le=100000)
     note: str = "UPI 2.0 Blockchain Transfer"
 
 class LoanApplicationRequest(BaseModel):
     loan_type: str
-    amount: float
-    tenure_months: int
+    amount: float = Field(..., gt=0, le=10000000)
+    tenure_months: int = Field(..., ge=1, le=360)
 
 class DepositCreationRequest(BaseModel):
     deposit_type: str
-    amount: float
-    tenure_months: int
+    amount: float = Field(..., gt=0, le=10000000)
+    tenure_months: int = Field(..., ge=1, le=120)
 
 class CardFreezeRequest(BaseModel):
     card_number: str

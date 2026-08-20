@@ -1,10 +1,12 @@
 import time
 import uuid
 import hashlib
+import secrets
 import asyncio
 from typing import Dict, Any, List
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Depends, Header
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from app.config import CORS_ORIGINS, PUBLIC_SIGNUP_ENABLED, WEB3_DEMO_AUTH_ENABLED
 from app.models import (
     UserRole, RiskLevel, AuthAction,
     UserSignupRequest, UserLoginRequest, UserUpdateRequest, UserSuspendRequest,
@@ -17,18 +19,24 @@ from app.models import (
 )
 from app.database import db, generate_blockchain_metadata
 from app.security import (
-    create_access_token, decode_access_token, require_admin_role, get_current_user,
-    ADMIN_PORTAL_ROLES
+    create_access_token, require_admin_role, require_customer_role, get_current_user,
+    hash_password, verify_password, ADMIN_PORTAL_ROLES
 )
 from app.trust_engine import trust_engine
 from app.blockchain_proof import blockchain_ledger
 
 # Secrets that must never leave the server, even to an authenticated caller.
 _PRIVATE_CREDENTIAL_FIELDS = {"password_hash", "retina_vector_hash"}
+_PRIVATE_SESSION_FIELDS = {"websocket_ticket_hash"}
 
 def public_credential(cred: dict) -> dict:
     """Credential safe to serialise to any client."""
     return {k: v for k, v in cred.items() if k not in _PRIVATE_CREDENTIAL_FIELDS}
+
+
+def public_session(session: dict) -> dict:
+    """Session fields safe to serialise to dashboards."""
+    return {k: v for k, v in session.items() if k not in _PRIVATE_SESSION_FIELDS}
 
 app = FastAPI(
     title="AI-Resistant Continuous Identity Verification API",
@@ -38,10 +46,10 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
 )
 
 active_websockets: Dict[str, WebSocket] = {}
@@ -60,6 +68,9 @@ def health_check():
 # User Registration (Username + Password + Retina Data + Unique User Key)
 @app.post("/auth/user-signup")
 def user_signup(payload: UserSignupRequest):
+    if not PUBLIC_SIGNUP_ENABLED:
+        raise HTTPException(status_code=403, detail="Public signup is disabled.")
+
     # Check if username or email already exists
     for cred in db.credentials.values():
         if cred.get("username") == payload.username:
@@ -76,7 +87,7 @@ def user_signup(payload: UserSignupRequest):
     unique_user_key = f"USR-KEY-{hashlib.sha256(f'{user_id}_{payload.username}_{time.time()}'.encode()).hexdigest()[:16].upper()}"
     consent_hash = hashlib.sha256(f"CONSENT_SIGNUP_{user_id}_{time.time()}".encode()).hexdigest()
     
-    password_hash = hashlib.sha256(payload.password.encode()).hexdigest()
+    password_hash = hash_password(payload.password)
 
     # Automatically record terms consent
     db.terms_consents[user_id] = {
@@ -135,11 +146,10 @@ def user_signup(payload: UserSignupRequest):
 # Username + Password Login Endpoint
 @app.post("/auth/user-login")
 def user_login(payload: UserLoginRequest):
-    pwd_hash = hashlib.sha256(payload.password.encode()).hexdigest()
     matched = None
     for cred in db.credentials.values():
         if cred.get("username") == payload.username or cred.get("email") == payload.username:
-            if cred.get("password_hash") == pwd_hash or payload.password == "password123":
+            if verify_password(payload.password, cred.get("password_hash", "")):
                 matched = cred
                 break
 
@@ -178,11 +188,10 @@ def user_login(payload: UserLoginRequest):
 # handed one that quietly fails on every admin route afterwards.
 @app.post("/auth/admin-login")
 def admin_login(payload: UserLoginRequest):
-    pwd_hash = hashlib.sha256(payload.password.encode()).hexdigest()
     matched = None
     for cred in db.credentials.values():
         if cred.get("username") == payload.username or cred.get("email") == payload.username:
-            if cred.get("password_hash") == pwd_hash:
+            if verify_password(payload.password, cred.get("password_hash", "")):
                 matched = cred
                 break
 
@@ -233,8 +242,12 @@ def admin_login(payload: UserLoginRequest):
 # Web3 Signup Endpoint
 @app.post("/auth/signup")
 def web3_signup(payload: Web3SignupRequest):
+    if not WEB3_DEMO_AUTH_ENABLED:
+        raise HTTPException(status_code=403, detail="Demo Web3 authentication is disabled.")
+
     user_id = f"user_{payload.wallet_address.lower()[:8]}"
-    cred_id = f"CRED-{payload.user_role.value.upper()[:3]}-{uuid.uuid4().hex[:6].upper()}"
+    role = UserRole.CUSTOMER
+    cred_id = f"CRED-{role.value.upper()[:3]}-{uuid.uuid4().hex[:6].upper()}"
     unique_user_key = f"USR-KEY-{hashlib.sha256(f'{user_id}_{time.time()}'.encode()).hexdigest()[:16].upper()}"
     consent_hash = hashlib.sha256(f"CONSENT_SIGNUP_{user_id}_{time.time()}".encode()).hexdigest()
 
@@ -253,7 +266,7 @@ def web3_signup(payload: Web3SignupRequest):
         "user_key": unique_user_key,
         "full_name": payload.full_name,
         "email": payload.email,
-        "user_role": payload.user_role.value,
+        "user_role": role.value,
         "institution": payload.institution,
         "department": payload.department,
         "issued_at": time.time(),
@@ -265,7 +278,7 @@ def web3_signup(payload: Web3SignupRequest):
 
     token = create_access_token(
         user_id=user_id,
-        role=payload.user_role,
+        role=role,
         credential_id=cred_id,
         consent_hash=consent_hash
     )
@@ -294,6 +307,9 @@ def web3_signup(payload: Web3SignupRequest):
 # Web3 Login Endpoint
 @app.post("/auth/login")
 def web3_login(payload: Web3LoginRequest):
+    if not WEB3_DEMO_AUTH_ENABLED:
+        raise HTTPException(status_code=403, detail="Demo Web3 authentication is disabled.")
+
     # Find matching credential by wallet address or user ID
     matched = None
     for cred in db.credentials.values():
@@ -342,7 +358,9 @@ def web3_login(payload: Web3LoginRequest):
 
 # Accept Terms
 @app.post("/terms/accept")
-def accept_terms(payload: TermsConsentRequest):
+def accept_terms(payload: TermsConsentRequest, current_user: dict = Depends(get_current_user)):
+    if payload.user_id != current_user.get("sub"):
+        raise HTTPException(status_code=403, detail="Terms can only be accepted for the signed-in user.")
     if not (payload.continuous_monitoring_consent and payload.revocation_terms_consent):
         raise HTTPException(
             status_code=400,
@@ -377,7 +395,7 @@ def accept_terms(payload: TermsConsentRequest):
 
 # Issue Credential
 @app.post("/credential/issue")
-def issue_credential(payload: CredentialIssueRequest):
+def issue_credential(payload: CredentialIssueRequest, admin_user: dict = Depends(require_admin_role)):
     user_consent = db.terms_consents.get(payload.user_id)
     if not user_consent:
         raise HTTPException(
@@ -427,19 +445,13 @@ def issue_credential(payload: CredentialIssueRequest):
 
 # Start Session
 @app.post("/auth/start")
-def auth_start(payload: AuthStartRequest, authorization: str = Header(None)):
-    if not authorization:
-        user_id = payload.user_id
-        role = UserRole.STUDENT
-        cred_id = "CRED-STU-88492"
-        consent_hash = db.terms_consents.get("stu001", {}).get("consent_hash", "MOCK_HASH")
-    else:
-        token_str = authorization.replace("Bearer ", "")
-        decoded = decode_access_token(token_str)
-        user_id = decoded["sub"]
-        role = UserRole(decoded["role"])
-        cred_id = decoded["credential_id"]
-        consent_hash = decoded["consent_hash"]
+def auth_start(payload: AuthStartRequest, current_user: dict = Depends(require_customer_role)):
+    user_id = current_user["sub"]
+    if payload.user_id != user_id:
+        raise HTTPException(status_code=403, detail="A session can only be started for the signed-in user.")
+    role = UserRole(current_user["role"])
+    cred_id = current_user["credential_id"]
+    consent_hash = current_user["consent_hash"]
 
     if cred_id in db.revoked_credentials:
         raise HTTPException(
@@ -448,6 +460,7 @@ def auth_start(payload: AuthStartRequest, authorization: str = Header(None)):
         )
 
     session_id = f"SES-{uuid.uuid4().hex[:8].upper()}"
+    websocket_ticket = secrets.token_urlsafe(32)
     session_data = {
         "session_id": session_id,
         "user_id": user_id,
@@ -458,7 +471,8 @@ def auth_start(payload: AuthStartRequest, authorization: str = Header(None)):
         "start_time": time.time(),
         "last_trust_score": 95.0,
         "risk_level": RiskLevel.LOW.value,
-        "status": "active"
+        "status": "active",
+        "websocket_ticket_hash": hashlib.sha256(websocket_ticket.encode()).hexdigest()
     }
     db.sessions[session_id] = session_data
 
@@ -478,15 +492,20 @@ def auth_start(payload: AuthStartRequest, authorization: str = Header(None)):
         "initial_trust_score": 95.0,
         "risk_level": RiskLevel.LOW.value,
         "recommended_action": AuthAction.ALLOW.value,
+        "websocket_ticket": websocket_ticket,
         "timestamp": time.time()
     }
 
 # Evaluate Trust Signals
 @app.post("/trust/evaluate", response_model=TrustEvaluationResult)
-def evaluate_trust(payload: TrustSignalPayload):
+def evaluate_trust(payload: TrustSignalPayload, current_user: dict = Depends(require_customer_role)):
     session = db.sessions.get(payload.session_id)
     if not session:
         raise HTTPException(status_code=404, detail="Session not found or expired")
+    if session.get("user_id") != current_user.get("sub"):
+        raise HTTPException(status_code=403, detail="The session belongs to another user.")
+    if session.get("status") != "active":
+        raise HTTPException(status_code=403, detail="The session is not active.")
 
     cred_id = session.get("credential_id")
     is_revoked = (cred_id in db.revoked_credentials)
@@ -517,10 +536,14 @@ def evaluate_trust(payload: TrustSignalPayload):
 
 # Step-Up Verification
 @app.post("/auth/step-up")
-def step_up_verification(payload: StepUpVerificationRequest):
+def step_up_verification(payload: StepUpVerificationRequest, current_user: dict = Depends(require_customer_role)):
     session = db.sessions.get(payload.session_id)
     if not session:
         raise HTTPException(status_code=404, detail="Session not found")
+    if session.get("user_id") != current_user.get("sub"):
+        raise HTTPException(status_code=403, detail="The session belongs to another user.")
+    if session.get("status") != "active":
+        raise HTTPException(status_code=403, detail="The session is not active.")
 
     if payload.challenge_response == "SUCCESS":
         session["last_trust_score"] = 92.0
@@ -566,6 +589,17 @@ def step_up_verification(payload: StepUpVerificationRequest):
 # Real-Time WebSocket Streaming
 @app.websocket("/ws/trust/{session_id}")
 async def websocket_trust_stream(websocket: WebSocket, session_id: str):
+    session = db.sessions.get(session_id)
+    ticket = websocket.query_params.get("ticket", "")
+    ticket_hash = hashlib.sha256(ticket.encode()).hexdigest()
+    if (
+        not session
+        or session.get("status") != "active"
+        or not secrets.compare_digest(ticket_hash, session.get("websocket_ticket_hash", ""))
+    ):
+        await websocket.close(code=4403)
+        return
+
     await websocket.accept()
     active_websockets[session_id] = websocket
     try:
@@ -578,7 +612,6 @@ async def websocket_trust_stream(websocket: WebSocket, session_id: str):
                 context_sig=float(data.get("context_sig", 0.95))
             )
 
-            session = db.sessions.get(session_id)
             is_revoked = False
             if session and session.get("credential_id") in db.revoked_credentials:
                 is_revoked = True
@@ -589,7 +622,7 @@ async def websocket_trust_stream(websocket: WebSocket, session_id: str):
                 session["last_trust_score"] = result.trust_score
                 session["risk_level"] = result.risk_level.value
 
-            await websocket.send_json(result.dict())
+            await websocket.send_json(result.model_dump())
 
     except WebSocketDisconnect:
         if session_id in active_websockets:
@@ -607,7 +640,7 @@ def institution_overview(current_user: dict = Depends(get_current_user)):
     names = {c["user_id"]: c.get("full_name", c["user_id"]) for c in members}
 
     sessions = [
-        {**s, "full_name": names.get(s["user_id"], s["user_id"])}
+        public_session({**s, "full_name": names.get(s["user_id"], s["user_id"])})
         for s in db.sessions.values() if s["user_id"] in member_ids
     ]
     logs = [l for l in reversed(db.audit_logs) if l["user_id"] in member_ids]
@@ -625,7 +658,7 @@ def institution_overview(current_user: dict = Depends(get_current_user)):
         "institution": institution,
         "caller": public_credential(caller),
         "members": [public_credential(c) for c in members],
-        "sessions": sessions,
+        "sessions": [public_session(session) for session in sessions],
         "audit_logs": logs[:100],
         "trust_events": trust_events[:100],
         "kpis": {
@@ -807,7 +840,7 @@ def get_admin_risk_summary(admin_user: dict = Depends(require_admin_role)):
         "high_risk_count": high_risk,
         "revoked_credentials_count": len(db.revoked_credentials),
         "recent_alerts": alerts,
-        "sessions": sessions,
+        "sessions": [public_session(session) for session in sessions],
         "audit_logs": list(reversed(db.audit_logs))[:100],
         "credentials": [public_credential(c) for c in db.credentials.values()],
         "avg_trust": round(
@@ -818,14 +851,14 @@ def get_admin_risk_summary(admin_user: dict = Depends(require_admin_role)):
 # ==================== NEXUS BLOCKBANK CORE BANKING API ====================
 
 @app.get("/api/banking/overview")
-def get_banking_overview():
+def get_banking_overview(current_user: dict = Depends(require_customer_role)):
     total_inr = sum(acc["balance"] for acc in db.accounts if acc["currency"] == "INR")
     total_cbdc = sum(acc["balance"] for acc in db.accounts if acc["currency"] == "e-Rupee")
     total_crypto = sum(acc["balance"] for acc in db.accounts if acc["currency"] == "ETH")
 
     return {
         "status": "success",
-        "customer": db.customers.get("stu001"),
+        "customer": db.customers.get(current_user["sub"], db.customers.get("stu001")),
         "metrics": {
             "total_fiat_inr": total_inr,
             "total_cbdc_erupee": total_cbdc,
@@ -843,15 +876,15 @@ def get_banking_overview():
     }
 
 @app.get("/api/banking/accounts")
-def get_accounts():
+def get_accounts(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "accounts": db.accounts}
 
 @app.get("/api/banking/transactions")
-def get_transactions():
+def get_transactions(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "transactions": db.transactions}
 
 @app.post("/api/banking/transfer")
-def execute_transfer(payload: TransferRequest):
+def execute_transfer(payload: TransferRequest, current_user: dict = Depends(require_customer_role)):
     sender = next((a for a in db.accounts if a["account_number"] == payload.sender_account), None)
     if not sender or sender["balance"] < payload.amount:
         raise HTTPException(status_code=400, detail="Insufficient account balance or account not found.")
@@ -883,7 +916,7 @@ def execute_transfer(payload: TransferRequest):
     db.transactions.insert(0, tx_entry)
 
     db.add_audit_log(
-        user_id="stu001",
+        user_id=current_user["sub"],
         event_type="BLOCKCHAIN_TRANSFER_EXECUTED",
         result="SUCCESS",
         reason_code="EIP712_SIGNATURE_VALIDATED",
@@ -895,11 +928,11 @@ def execute_transfer(payload: TransferRequest):
     return {"status": "success", "transaction": tx_entry, "blockchain_tx_hash": proof["tx_hash"]}
 
 @app.get("/api/banking/upi")
-def get_upi_details():
+def get_upi_details(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "upis": db.upis}
 
 @app.post("/api/banking/upi/pay")
-def pay_upi(payload: UPIPaymentRequest):
+def pay_upi(payload: UPIPaymentRequest, current_user: dict = Depends(require_customer_role)):
     sender_acc = db.accounts[0]
     if sender_acc["balance"] < payload.amount:
         raise HTTPException(status_code=400, detail="Insufficient balance for UPI payment.")
@@ -929,14 +962,14 @@ def pay_upi(payload: UPIPaymentRequest):
     return {"status": "success", "transaction": tx_entry, "blockchain_tx_hash": proof["tx_hash"]}
 
 @app.get("/api/banking/cards")
-def get_cards():
+def get_cards(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "cards": db.cards}
 
 @app.post("/api/banking/cards/freeze")
-def freeze_card(payload: CardFreezeRequest):
+def freeze_card(payload: CardFreezeRequest, current_user: dict = Depends(require_customer_role)):
     card = next((c for c in db.cards if c["card_number_masked"] == payload.card_number), None)
     if not card:
-        raise HTTPException(status_code=44, detail="Card not found.")
+        raise HTTPException(status_code=404, detail="Card not found.")
 
     card["is_frozen"] = payload.is_frozen
     card["metadata"]["status"] = "FROZEN_BY_CUSTOMER" if payload.is_frozen else "ACTIVE_SETTLED"
@@ -945,11 +978,11 @@ def freeze_card(payload: CardFreezeRequest):
     return {"status": "success", "card": card}
 
 @app.get("/api/banking/loans")
-def get_loans():
+def get_loans(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "loans": db.loans}
 
 @app.post("/api/banking/loans/apply")
-def apply_loan(payload: LoanApplicationRequest):
+def apply_loan(payload: LoanApplicationRequest, current_user: dict = Depends(require_customer_role)):
     meta = generate_blockchain_metadata("LoanAsset", "stu001", "ACC-NEX-884920", payload.amount, "INR", f"Smart Loan ({payload.loan_type})")
     emi = round((payload.amount * 1.085) / payload.tenure_months, 2)
 
@@ -971,11 +1004,11 @@ def apply_loan(payload: LoanApplicationRequest):
     return {"status": "success", "loan": new_loan}
 
 @app.get("/api/banking/deposits")
-def get_deposits():
+def get_deposits(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "deposits": db.deposits}
 
 @app.post("/api/banking/deposits/create")
-def create_deposit(payload: DepositCreationRequest):
+def create_deposit(payload: DepositCreationRequest, current_user: dict = Depends(require_customer_role)):
     if db.accounts[0]["balance"] < payload.amount:
         raise HTTPException(status_code=400, detail="Insufficient account balance to open deposit.")
 
@@ -998,31 +1031,31 @@ def create_deposit(payload: DepositCreationRequest):
     return {"status": "success", "deposit": new_dep}
 
 @app.get("/api/banking/beneficiaries")
-def get_beneficiaries():
+def get_beneficiaries(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "beneficiaries": db.beneficiaries}
 
 @app.get("/api/banking/bills")
-def get_bills():
+def get_bills(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "bills": db.bill_payments}
 
 @app.get("/api/banking/kyc")
-def get_kyc_vault():
+def get_kyc_vault(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "kyc": db.kyc_vault}
 
 @app.get("/api/banking/rewards")
-def get_rewards():
+def get_rewards(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "rewards": db.rewards.get("stu001")}
 
 @app.get("/api/banking/notifications")
-def get_notifications():
+def get_notifications(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "notifications": db.notifications}
 
 @app.get("/api/banking/support")
-def get_support_tickets():
+def get_support_tickets(current_user: dict = Depends(require_customer_role)):
     return {"status": "success", "tickets": db.support_tickets}
 
 @app.get("/api/banking/metadata/{object_id}")
-def get_object_metadata(object_id: str):
+def get_object_metadata(object_id: str, current_user: dict = Depends(require_customer_role)):
     # Search all collections for an object matching object_id
     collections = [
         [db.customers.get("stu001")],
@@ -1042,7 +1075,7 @@ def get_object_metadata(object_id: str):
     return {"status": "success", "metadata": default_meta}
 
 @app.get("/api/blockchain/nodes")
-def get_blockchain_nodes():
+def get_blockchain_nodes(current_user: dict = Depends(require_admin_role)):
     return {
         "status": "success",
         "network": "Hyperledger Besu / Sepolia ZK Rollup Hybrid",
@@ -1060,7 +1093,7 @@ def get_blockchain_nodes():
     }
 
 @app.get("/api/blockchain/contracts")
-def get_smart_contracts():
+def get_smart_contracts(current_user: dict = Depends(require_admin_role)):
     return {
         "status": "success",
         "contracts": [
@@ -1100,7 +1133,7 @@ def get_smart_contracts():
 # ============================================================
 
 @app.get("/api/profile")
-def get_profile(current_user: dict = Depends(get_current_user)):
+def get_profile(current_user: dict = Depends(require_customer_role)):
     user_id = current_user.get("sub")
     profile = db.profiles.get(user_id)
     if not profile:
@@ -1123,7 +1156,7 @@ def get_profile(current_user: dict = Depends(get_current_user)):
     }
 
 @app.post("/api/profile")
-def create_or_update_profile(payload: ProfileCreateRequest, current_user: dict = Depends(get_current_user)):
+def create_or_update_profile(payload: ProfileCreateRequest, current_user: dict = Depends(require_customer_role)):
     user_id = current_user.get("sub")
     db.profiles[user_id] = {
         "user_id": user_id,
@@ -1156,7 +1189,7 @@ def create_or_update_profile(payload: ProfileCreateRequest, current_user: dict =
     }
 
 @app.post("/api/profile/verify")
-def submit_verification(payload: VerificationSubmitRequest, current_user: dict = Depends(get_current_user)):
+def submit_verification(payload: VerificationSubmitRequest, current_user: dict = Depends(require_customer_role)):
     user_id = current_user.get("sub")
     profile = db.profiles.get(user_id)
     if not profile:
@@ -1260,12 +1293,10 @@ def admin_review_verification(request_id: str, payload: AdminReviewRequest, curr
     }
 
 @app.get("/api/profile/audit")
-def get_verification_audit(current_user: dict = Depends(get_current_user)):
+def get_verification_audit(current_user: dict = Depends(require_customer_role)):
     user_id = current_user.get("sub")
     user_logs = [log for log in db.verification_audit_logs if log.get("user_id") == user_id]
     return {
         "status": "success",
         "audit_history": user_logs
     }
-
-

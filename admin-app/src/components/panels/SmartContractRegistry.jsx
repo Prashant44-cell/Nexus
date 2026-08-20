@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Code, ShieldCheck, Database, Play } from 'lucide-react';
+import { api } from '../../api';
 
 export default function SmartContractRegistry() {
   const [contracts, setContracts] = useState([]);
@@ -12,8 +13,7 @@ export default function SmartContractRegistry() {
   const fetchContracts = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:8000/api/blockchain/contracts');
-      const data = await res.json();
+      const data = await api('/api/blockchain/contracts');
       setContracts(data.contracts || []);
     } catch (err) {
       console.error(err);

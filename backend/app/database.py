@@ -2,7 +2,9 @@ import time
 import uuid
 import hashlib
 from typing import Dict, List, Optional
+from app.config import ADMIN_PASSWORD, ADMIN_USERNAME, DEMO_MODE, DEMO_USER_PASSWORD
 from app.models import UserRole, RiskLevel, AuthAction
+from app.passwords import hash_password
 
 INSTITUTION = "Nexus Global Reserve Bank"
 
@@ -137,21 +139,22 @@ class InMemoryDatabase:
             "version": "v2.4-banking",
             "consent_hash": consent_hash
         }
-        self.credentials[student_cred_id] = {
-            "credential_id": student_cred_id,
-            "user_id": "stu001",
-            "username": "aarav_sharma",
-            "user_key": student_user_key,
-            "full_name": "Aarav Sharma",
-            "email": "aarav.sharma@nexusbank.io",
-            "user_role": UserRole.CUSTOMER.value,
-            "institution": INSTITUTION,
-            "department": "Private Wealth & Digital Vault",
-            "issued_at": time.time() - 3600,
-            "status": "active",
-            "consent_hash": consent_hash,
-            "password_hash": hashlib.sha256(b"password123").hexdigest()
-        }
+        if DEMO_MODE:
+            self.credentials[student_cred_id] = {
+                "credential_id": student_cred_id,
+                "user_id": "stu001",
+                "username": "aarav_sharma",
+                "user_key": student_user_key,
+                "full_name": "Aarav Sharma",
+                "email": "aarav.sharma@nexusbank.io",
+                "user_role": UserRole.CUSTOMER.value,
+                "institution": INSTITUTION,
+                "department": "Private Wealth & Digital Vault",
+                "issued_at": time.time() - 3600,
+                "status": "active",
+                "consent_hash": consent_hash,
+                "password_hash": hash_password(DEMO_USER_PASSWORD)
+            }
 
         # Admin Credential
         admin_cred_id = "CRED-ADM-00001"
@@ -165,7 +168,7 @@ class InMemoryDatabase:
         self.credentials[admin_cred_id] = {
             "credential_id": admin_cred_id,
             "user_id": "admin001",
-            "username": "superadmin",
+            "username": ADMIN_USERNAME,
             "user_key": "USR-KEY-" + hashlib.sha256(b"admin001_platform_key").hexdigest()[:16].upper(),
             "full_name": "Regulatory Node Governor",
             "email": "governor@rbi.nexusbank.io",
@@ -175,7 +178,7 @@ class InMemoryDatabase:
             "issued_at": time.time() - 86400,
             "status": "active",
             "consent_hash": admin_consent_hash,
-            "password_hash": hashlib.sha256(b"SuperAdmin@2026").hexdigest()
+            "password_hash": hash_password(ADMIN_PASSWORD)
         }
 
         # Seed Profile for Aarav Sharma

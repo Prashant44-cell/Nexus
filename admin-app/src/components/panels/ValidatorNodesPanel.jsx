@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Server, ShieldCheck, Cpu, RefreshCw, Layers } from 'lucide-react';
+import { api } from '../../api';
 
 export default function ValidatorNodesPanel() {
   const [nodes, setNodes] = useState([]);
@@ -12,8 +13,7 @@ export default function ValidatorNodesPanel() {
   const fetchNodes = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:8000/api/blockchain/nodes');
-      const data = await res.json();
+      const data = await api('/api/blockchain/nodes');
       setNodes(data.active_validators || []);
     } catch (err) {
       console.error(err);

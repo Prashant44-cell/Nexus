@@ -14,7 +14,7 @@ import CredentialManagement from './components/panels/CredentialManagement';
 import AuditCompliance from './components/panels/AuditCompliance';
 import AdminVerificationReview from './components/panels/AdminVerificationReview';
 
-import { useRiskSummary } from './api';
+import { setToken, useRiskSummary } from './api';
 import { usePanelMotion } from './motion';
 
 export default function App() {
@@ -25,6 +25,11 @@ export default function App() {
   const { data, error, reload } = useRiskSummary(!!admin);
 
   usePanelMotion([activeTab, admin]);
+
+  const handleLogout = () => {
+    setToken(null);
+    setAdmin(null);
+  };
 
   if (!admin) {
     return <AdminLogin onAuthSuccess={setAdmin} />;
@@ -66,7 +71,7 @@ export default function App() {
         isCollapsed={isCollapsed}
         setIsCollapsed={setIsCollapsed}
         admin={admin}
-        onLogout={() => setAdmin(null)}
+        onLogout={handleLogout}
       />
       <div style={{
         flex: 1,

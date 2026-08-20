@@ -5,8 +5,11 @@ import { useState, useEffect } from 'react';
 let authToken = null;
 export const setToken = (t) => { authToken = t; };
 
+const configuredApiBase = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+const apiBase = configuredApiBase || '/api';
+
 export async function api(path, options = {}) {
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${apiBase}${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
@@ -17,6 +20,15 @@ export async function api(path, options = {}) {
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.detail || `${res.status} ${res.statusText}`);
   return body;
+}
+
+export function getWebSocketUrl(path, ticket) {
+  const configuredWsBase = (import.meta.env.VITE_WS_BASE_URL || '').replace(/\/$/, '');
+  const derivedApiWsBase = configuredApiBase.replace(/^http/, 'ws');
+  const sameOriginWsBase = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`;
+  const base = configuredWsBase || derivedApiWsBase || sameOriginWsBase;
+  const separator = path.includes('?') ? '&' : '?';
+  return `${base}${path}${separator}ticket=${encodeURIComponent(ticket)}`;
 }
 
 // Every client panel reads from this one endpoint.

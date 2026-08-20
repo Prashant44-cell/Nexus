@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Landmark, Server, Activity, ShieldCheck, Cpu, Database, ArrowUpRight, TrendingUp } from 'lucide-react';
+import { api } from '../../api';
 
 export default function BankingAdminDashboard() {
   const [nodeData, setNodeData] = useState(null);
@@ -10,8 +11,7 @@ export default function BankingAdminDashboard() {
   const fetchNodeData = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:8000/api/blockchain/nodes');
-      const data = await res.json();
+      const data = await api('/api/blockchain/nodes');
       setNodeData(data);
     } catch (err) {
       console.error(err);

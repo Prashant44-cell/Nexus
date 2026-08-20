@@ -1,0 +1,10 @@
+# Keep the architecture map focused on the Nexus BlockBank application.
+.agents/
+.codex/
+deck_assets/
+node_modules/
+dist/
+graphify-out/
+.git/
+.pytest_cache/
+__pycache__/

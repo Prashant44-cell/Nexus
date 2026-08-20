@@ -20,7 +20,7 @@ import RewardsSupportPanel from './components/panels/RewardsSupportPanel';
 import MetadataExplorer from './components/panels/MetadataExplorer';
 import AuditLogs from './components/panels/AuditLogs';
 
-import { api } from './api';
+import { api, getWebSocketUrl, setToken } from './api';
 import { usePanelMotion } from './motion';
 
 const SIGNAL_SEND_INTERVAL_MS = 1000;
@@ -82,8 +82,8 @@ export default function App() {
 
   usePanelMotion([activeTab, credential, termsAccepted]);
 
-  const connectWebSocket = (sesId) => {
-    const ws = new WebSocket(`ws://${window.location.hostname}:8000/ws/trust/${sesId}`);
+  const connectWebSocket = (sesId, ticket) => {
+    const ws = new WebSocket(getWebSocketUrl(`/ws/trust/${sesId}`, ticket));
     ws.onopen = () => setIsConnected(true);
     ws.onclose = () => setIsConnected(false);
     ws.onmessage = (event) => {
@@ -106,7 +106,7 @@ export default function App() {
         }),
       });
       setSessionId(data.session_id);
-      connectWebSocket(data.session_id);
+      connectWebSocket(data.session_id, data.websocket_ticket);
     } catch (err) {
       setSessionError(err.message);
     }
@@ -145,6 +145,7 @@ export default function App() {
 
   const handleLogout = () => {
     wsRef.current?.close();
+    setToken(null);
     setCredential(null);
     setTermsAccepted(false);
     setSessionId(null);
