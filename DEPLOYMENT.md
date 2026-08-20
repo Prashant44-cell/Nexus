@@ -23,6 +23,24 @@ python -m pip install -r requirements.txt
 python run.py
 ```
 
+## Container deployment
+
+The backend includes `backend/Dockerfile` and runs on any Docker-compatible Python host. Configure the backend service with these required environment values:
+
+```text
+APP_ENV=production
+DEMO_MODE=true
+PUBLIC_SIGNUP_ENABLED=false
+WEB3_DEMO_AUTH_ENABLED=false
+JWT_SECRET=<random value of at least 32 characters>
+ADMIN_USERNAME=superadmin
+ADMIN_PASSWORD=<strong password>
+DEMO_USER_PASSWORD=<strong password>
+CORS_ORIGINS=https://prashant44-cell.github.io
+```
+
+The host supplies `PORT`; use `/health` as its health-check path. After the host assigns an HTTPS backend URL, set that exact origin as the repository Actions variable `VITE_API_BASE_URL` and rerun the Pages workflow. The client derives its secure WebSocket URL automatically.
+
 ## Frontend settings
 
 Set `VITE_API_BASE_URL` before building both portals. Set `VITE_WS_BASE_URL` for the client portal. The values must point to the public backend origin and use HTTPS/WSS.
