@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: nexus-blockbank-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run.py
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: PUBLIC_SIGNUP_ENABLED
+        value: "false"
+      - key: WEB3_DEMO_AUTH_ENABLED
+        value: "false"
+      - key: TOKEN_TTL_MINUTES
+        value: "60"
+      - key: HOST
+        value: 0.0.0.0
+      - key: JWT_SECRET
+        sync: false
+      - key: ADMIN_USERNAME
+        value: superadmin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DEMO_USER_PASSWORD
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+
+  - type: web
+    name: nexus-blockbank-client
+    env: static
+    rootDir: client-app
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false
+      - key: VITE_WS_BASE_URL
+        sync: false
+
+  - type: web
+    name: nexus-blockbank-admin
+    env: static
+    rootDir: admin-app
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false

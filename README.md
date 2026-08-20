@@ -740,4 +740,5 @@ Built as a hackathon demonstration of continuous trust, role-aware banking, and 
 - **False Rejection Rate (FRR)**: `< 0.31%`
 - **IBFT 2.0 Consensus Throughput**: `3,450 TPS`
 #   N e x u s  
+ #   N e x u s  
  
