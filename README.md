@@ -275,8 +275,8 @@ No cloud account, database, blockchain wallet, or API key is required for the lo
 Clone and install each application:
 
 ```powershell
-git clone https://github.com/Prashant44-cell/Fintech.git
-cd Fintech
+git clone https://github.com/Prashant44-cell/Nexus.git
+cd Nexus
 
 cd backend
 python -m pip install -r requirements-dev.txt
@@ -494,7 +494,7 @@ npm run build
 
 The dependency review on 20 August 2026 reported no known vulnerabilities from the Python and npm audits. This is a point-in-time result and should be rerun whenever dependencies change.
 
-No automated coverage report, lint command, formatter, type checker, pre-commit hook, browser end-to-end suite, or CI workflow is configured yet.
+The Pages workflow validates both production builds. Automated coverage, linting, formatting, type checking, pre-commit hooks, browser end-to-end tests, and backend security gates are not configured yet.
 
 ## Deployment
 
@@ -520,7 +520,9 @@ flowchart LR
     APIHOST --> TLS
 ```
 
-Docker files and a CI/CD pipeline are not present. Both frontends build to `dist/` and can be hosted as static sites; the API requires a Python application host.
+Docker files are not present. Both frontends build to `dist/` and can be hosted as static sites; the API requires a separate Python application host.
+
+GitHub Pages automation is available in [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). After setting the repository variable `VITE_API_BASE_URL` and selecting **GitHub Actions** under **Settings → Pages**, pushes to `main` publish the customer portal at `/Nexus/` and the admin portal at `/Nexus/admin/`. GitHub Pages does not host the FastAPI backend.
 
 ## Security
 
@@ -610,7 +612,7 @@ For a real deployment, the minimum upgrade is a transactional database, immutabl
 - No payment rail, KYC provider, sanctions service, or banking network integration
 - No persistent database, migrations, backup, or disaster recovery
 - No rate limiting, idempotency, token refresh, or fine-grained staff permissions
-- No Docker, CI/CD, infrastructure-as-code, monitoring, or alerting configuration
+- No Docker, infrastructure-as-code, backend deployment pipeline, monitoring, or alerting configuration
 - No formal accessibility audit or browser end-to-end suite
 - No real biometric evaluation, FAR/FRR study, or compliance certification
 
@@ -711,18 +713,18 @@ Planned:
 - Rate limiting and account lockout
 - Idempotency for financial mutations
 - Fine-grained staff permissions
-- CI pipeline with automated security scanning
+- Expand CI with backend tests and automated security scanning
 - Monitoring and alerting
 - Containerized deployment
 
 ## References and Support
 
-- Source repository: [Prashant44-cell/Fintech](https://github.com/Prashant44-cell/Fintech)
+- Source repository: [Prashant44-cell/Nexus](https://github.com/Prashant44-cell/Nexus)
 - API contract: http://localhost:8000/docs
 - Deployment checklist: [DEPLOYMENT.md](DEPLOYMENT.md)
 - Architecture explorer: [graphify-out/graph.html](graphify-out/graph.html)
 - Project graph report: [graphify-out/GRAPH_REPORT.md](graphify-out/GRAPH_REPORT.md)
-- Issues and support: [GitHub Issues](https://github.com/Prashant44-cell/Fintech/issues)
+- Issues and support: [GitHub Issues](https://github.com/Prashant44-cell/Nexus/issues)
 
 ## License
 
@@ -733,10 +735,3 @@ No `LICENSE` or `CHANGELOG.md` file is currently present. Until a license is add
 ---
 
 Built as a hackathon demonstration of continuous trust, role-aware banking, and auditable financial workflows.
-
-- **Trust Evaluation Latency**: `< 15 ms`
-- **P95 Transaction Finality**: `84 ms`
-- **False Acceptance Rate (FAR)**: `< 0.12%`
-- **False Rejection Rate (FRR)**: `< 0.31%`
-- **IBFT 2.0 Consensus Throughput**: `3,450 TPS`
-#
