@@ -1,11 +1,14 @@
+import os
 import time
 import uuid
 import hashlib
 import secrets
 import asyncio
+from pathlib import Path
 from typing import Dict, Any, List
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from app.config import CORS_ORIGINS, PUBLIC_SIGNUP_ENABLED, WEB3_DEMO_AUTH_ENABLED
 from app.models import (
     UserRole, RiskLevel, AuthAction,
@@ -1300,3 +1303,17 @@ def get_verification_audit(current_user: dict = Depends(require_customer_role)):
         "status": "success",
         "audit_history": user_logs
     }
+
+
+# The production container builds both React portals into this directory. Mounting
+# them after every API and WebSocket route keeps the existing UI while making all
+# browser requests same-origin.
+def mount_portals(target_app: FastAPI, web_root: Path) -> None:
+    client_portal = web_root / "client"
+    admin_portal = web_root / "admin"
+    if client_portal.is_dir() and admin_portal.is_dir():
+        target_app.mount("/admin", StaticFiles(directory=admin_portal, html=True), name="admin-portal")
+        target_app.mount("/", StaticFiles(directory=client_portal, html=True), name="client-portal")
+
+
+mount_portals(app, Path(os.getenv("WEB_ROOT", Path(__file__).resolve().parents[1] / "web")))

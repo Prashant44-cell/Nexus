@@ -316,11 +316,11 @@ Frontend env files:
 
 | Application | Variable | Purpose |
 |---|---|---|
-| Customer | `VITE_API_BASE_URL` | Public backend HTTP origin |
-| Customer | `VITE_WS_BASE_URL` | Public backend WebSocket origin |
-| Admin | `VITE_API_BASE_URL` | Public backend HTTP origin |
+| Customer | `VITE_API_BASE_URL` | Optional external API override |
+| Customer | `VITE_WS_BASE_URL` | Optional external WebSocket override |
+| Admin | `VITE_API_BASE_URL` | Optional external API override |
 
-Leave a frontend value blank only when the hosting layer proxies `/api` and `/ws` to the backend.
+Leave these values blank for the included full-stack container. Both portals then use the same origin as the FastAPI service.
 
 ## Run Locally
 
@@ -514,15 +514,12 @@ Production gate:
 flowchart LR
     RELEASE[Release commit] --> TEST[Backend tests]
     TEST --> BUILD[Build both portals]
-    BUILD --> STATIC[Publish two static sites]
-    BUILD --> APIHOST[Deploy FastAPI service]
-    STATIC --> TLS[HTTPS/WSS reverse proxy]
-    APIHOST --> TLS
+    BUILD --> CONTAINER[Build one full-stack container]
+    CONTAINER --> HOST[Deploy one FastAPI web service]
+    HOST --> PORTALS[Customer portal, admin portal, API, and WSS]
 ```
 
-Docker files are not present. Both frontends build to `dist/` and can be hosted as static sites; the API requires a separate Python application host.
-
-GitHub Pages automation is available in [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). After setting the repository variable `VITE_API_BASE_URL` and selecting **GitHub Actions** under **Settings → Pages**, pushes to `main` publish the customer portal at `/Nexus/` and the admin portal at `/Nexus/admin/`. GitHub Pages does not host the FastAPI backend.
+The root [`Dockerfile`](Dockerfile) builds both React portals and places them behind the FastAPI service. The customer portal is `/`, the admin portal is `/admin/`, and the API and WebSocket routes use that same domain. No GitHub Pages deployment is used for the full-stack release.
 
 ## Security
 
@@ -612,7 +609,7 @@ For a real deployment, the minimum upgrade is a transactional database, immutabl
 - No payment rail, KYC provider, sanctions service, or banking network integration
 - No persistent database, migrations, backup, or disaster recovery
 - No rate limiting, idempotency, token refresh, or fine-grained staff permissions
-- No Docker, infrastructure-as-code, backend deployment pipeline, monitoring, or alerting configuration
+- No persistent database, monitoring, or alerting configuration
 - No formal accessibility audit or browser end-to-end suite
 - No real biometric evaluation, FAR/FRR study, or compliance certification
 
@@ -624,7 +621,7 @@ Common issues:
   - Check that the token is current and signed with the active `JWT_SECRET`.
 
 - Frontend cannot reach backend
-  - Verify `VITE_API_BASE_URL`, `VITE_WS_BASE_URL`, and `CORS_ORIGINS`.
+  - Confirm the service URL opens `/health`; the portals must be opened from that same service URL.
 
 - Admin login works locally but not in hosted mode
   - Confirm `ADMIN_USERNAME` and `ADMIN_PASSWORD` are set in the deployment environment.

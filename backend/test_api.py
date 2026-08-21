@@ -1,7 +1,11 @@
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from app.config import ADMIN_PASSWORD, ADMIN_USERNAME, DEMO_MODE, DEMO_USER_PASSWORD
-from app.main import app
+from app.main import app, mount_portals
 
 
 client = TestClient(app)
@@ -158,3 +162,18 @@ def test_public_signup_cannot_escalate_role_or_use_demo_password_bypass():
 
     revoked_headers = {"Authorization": f"Bearer {signup.json()['id_token']}"}
     assert client.get("/api/banking/accounts", headers=revoked_headers).status_code == 401
+
+
+def test_fullstack_container_serves_both_portals():
+    with TemporaryDirectory() as directory:
+        root = Path(directory)
+        for name in ("client", "admin"):
+            portal = root / name
+            portal.mkdir()
+            (portal / "index.html").write_text(f"{name} portal", encoding="utf-8")
+
+        hosted = FastAPI()
+        mount_portals(hosted, root)
+        website = TestClient(hosted)
+        assert website.get("/").text == "client portal"
+        assert website.get("/admin/").text == "admin portal"

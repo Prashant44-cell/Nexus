@@ -6,7 +6,7 @@ let authToken = null;
 export const setToken = (t) => { authToken = t; };
 
 const configuredApiBase = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
-const apiBase = configuredApiBase || '/api';
+const apiBase = configuredApiBase;
 
 export async function api(path, options = {}) {
   const res = await fetch(`${apiBase}${path}`, {
