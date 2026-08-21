@@ -1,14 +1,15 @@
 {
-  "0": "Backend Core & Banking",
-  "1": "Client Banking Portal",
-  "2": "Admin Governance Portal",
-  "3": "Trust & Session Models",
-  "4": "Frontend Build Tooling",
-  "5": "Shared Analytics UI",
-  "6": "Runtime Dependencies",
-  "7": "Release Test Suite",
-  "8": "Frontend Components",
-  "9": "API Configuration",
-  "10": "Support Utilities",
-  "11": "Deployment Scripts"
+  "0": "main.py",
+  "1": "api",
+  "2": "api.js",
+  "3": "models.py",
+  "4": "package.json",
+  "5": "Nexus BlockBank — AI-Resistant Continuous Identity & Digital Banking Platform",
+  "6": "dependencies",
+  "7": "security.py",
+  "8": "AGENTS.md",
+  "9": "admin/BackgroundVideo.jsx",
+  "10": "__init__.py",
+  "11": "vite.config.js",
+  "12": "vite.config.admin.js"
 }
