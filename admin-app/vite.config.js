@@ -8,11 +8,10 @@ export default defineConfig({
     port: 3001,
     strictPort: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
+      '/api': { target: 'http://localhost:8000', changeOrigin: true },
+      '/auth': { target: 'http://localhost:8000', changeOrigin: true },
+      '/credential': { target: 'http://localhost:8000', changeOrigin: true },
+      '/admin': { target: 'http://localhost:8000', changeOrigin: true }
     }
   }
 })

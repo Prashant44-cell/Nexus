@@ -21,7 +21,7 @@ services:
       - key: HOST
         value: 0.0.0.0
       - key: CORS_ORIGINS
-        value: https://prashant44-cell.github.io
+        value: https://nexus-blockbank.onrender.com
       - key: JWT_SECRET
         sync: false
       - key: ADMIN_USERNAME
