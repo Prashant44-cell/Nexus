@@ -1,0 +1,31 @@
+{
+  "name": "nexus-blockbank-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.js",
+    "dev:admin": "vite --config vite.config.admin.js",
+    "build:client": "vite build --config vite.config.js",
+    "build:admin": "vite build --config vite.config.admin.js && node -e \"const fs=require('fs');fs.renameSync('dist/admin/admin.html','dist/admin/index.html');\"",
+    "preview": "vite preview --config vite.config.js"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.5.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.43.0",
+    "lucide-react": "^0.263.1",
+    "postcss": "^8.5.24",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "vite": "^4.4.5"
+  }
+}
