@@ -9,7 +9,7 @@ export const setToken = (t) => { authToken = t; adminToken = t; };
 export const setClientToken = (t) => { authToken = t; };
 export const setAdminToken = (t) => { adminToken = t; };
 
-const configuredApiBase = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+const configuredApiBase = (import.meta.env.VITE_API_BASE_URL || '').trim().replace(/\/$/, '');
 const apiBase = configuredApiBase;
 
 export async function api(path, options = {}) {
@@ -27,7 +27,7 @@ export async function api(path, options = {}) {
 }
 
 export function getWebSocketUrl(path, ticket) {
-  const configuredWsBase = (import.meta.env.VITE_WS_BASE_URL || '').replace(/\/$/, '');
+  const configuredWsBase = (import.meta.env.VITE_WS_BASE_URL || '').trim().replace(/\/$/, '');
   const derivedApiWsBase = configuredApiBase.replace(/^http/, 'ws');
   const sameOriginWsBase = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`;
   const base = configuredWsBase || derivedApiWsBase || sameOriginWsBase;
