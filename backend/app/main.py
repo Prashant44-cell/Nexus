@@ -47,12 +47,14 @@ app = FastAPI(
     description="Low-latency continuous human identity verification backend with Web3 Sepolia blockchain verification."
 )
 
+cors_origins = [o for o in CORS_ORIGINS if o != "*"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=CORS_ORIGINS,
+    allow_origins=cors_origins if cors_origins else ["*"],
+    allow_origin_regex=r".*" if ("*" in CORS_ORIGINS or not cors_origins) else None,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 active_websockets: Dict[str, WebSocket] = {}
