@@ -1,12 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Admin portal — served at /admin/ in production, dev on port 3001
+// Dedicated Admin Portal dev server (default port 3001)
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: 'admin-dev-rewrite',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url === '/' || req.url === '/index.html' || req.url === '/admin' || req.url === '/admin/') {
+            req.url = '/admin.html'
+          }
+          next()
+        })
+      }
+    }
+  ],
   root: '.',
-  // In production the admin portal is mounted at /admin/ by FastAPI.
-  // During dev (port 3001) base is / so hot reload works without path issues.
   base: process.env.NODE_ENV === 'production' ? '/admin/' : '/',
   build: {
     outDir: 'dist/admin',
@@ -17,12 +28,19 @@ export default defineConfig({
   },
   server: {
     port: 3001,
-    strictPort: true,
     proxy: {
       '/api': { target: 'http://localhost:8000', changeOrigin: true },
       '/auth': { target: 'http://localhost:8000', changeOrigin: true },
       '/credential': { target: 'http://localhost:8000', changeOrigin: true },
-      '/admin': { target: 'http://localhost:8000', changeOrigin: true },
+      '/admin': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        bypass: (req) => {
+          if (req.headers.accept && req.headers.accept.includes('text/html')) {
+            return '/admin.html'
+          }
+        },
+      },
     },
   },
 })

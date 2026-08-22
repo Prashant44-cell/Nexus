@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "frontend/src/AdminApp.jsx": {
-    "mtime": 1787351848.7127755,
-    "seen": 1787352405.5613055,
-    "ast_hash": "43dc399c1b80b1f23bee4411b347b269",
+    "mtime": 1787367667.4482725,
+    "seen": 1787367804.3593335,
+    "ast_hash": "26c75fa2ae0037b99e05652ff180fd30",
     "semantic_hash": ""
   },
   "frontend/src/ClientApp.jsx": {
@@ -96,9 +96,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/AuthModal.jsx": {
-    "mtime": 1787207274.6089203,
-    "seen": 1787352405.5613184,
-    "ast_hash": "eaa7890f9c9ff70c7138cd58bdcac9d9",
+    "mtime": 1787367685.8255768,
+    "seen": 1787367804.3617423,
+    "ast_hash": "a4f23c47952afb12cfbd49aa3fe0bd1f",
     "semantic_hash": ""
   },
   "frontend/src/components/BackgroundVideo.jsx": {
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/Sidebar.jsx": {
-    "mtime": 1785860784.3038871,
-    "seen": 1787352405.5613284,
-    "ast_hash": "842cb0584647c6eaa9ef40ee9bacf0c2",
+    "mtime": 1787367745.648722,
+    "seen": 1787367804.3626046,
+    "ast_hash": "1cde422eb4d271f528e6f11818a9675b",
     "semantic_hash": ""
   },
   "frontend/src/components/StepUpChallenge.jsx": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/admin/AdminLogin.jsx": {
-    "mtime": 1787352001.8152583,
-    "seen": 1787352405.5614183,
-    "ast_hash": "1178b36de382e216ff507ffeb49dbe50",
+    "mtime": 1787367691.2372813,
+    "seen": 1787367804.365042,
+    "ast_hash": "86fb574ad67ab4a339a973f2debd72c6",
     "semantic_hash": ""
   },
   "frontend/src/components/admin/AdminNavbar.jsx": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "frontend/src/components/admin/AdminSidebar.jsx": {
-    "mtime": 1785860854.6528673,
-    "seen": 1787352405.5614252,
-    "ast_hash": "6e1f63ae41dff8daba8a387d3a71ce4f",
+    "mtime": 1787367750.3665946,
+    "seen": 1787367804.3654497,
+    "ast_hash": "713a5977436bbf1c2605407bcdd73a80",
     "semantic_hash": ""
   },
   "frontend/src/components/admin/BackgroundVideo.jsx": {
@@ -312,9 +312,9 @@
     "semantic_hash": ""
   },
   "frontend/src/main.jsx": {
-    "mtime": 1787351767.1864636,
-    "seen": 1787352405.5615106,
-    "ast_hash": "daa6bcff2cb2afd3d10df27c0ccddc59",
+    "mtime": 1787367657.5849466,
+    "seen": 1787367804.381869,
+    "ast_hash": "3bc1f7178fb7f05bcc3caa50935e8113",
     "semantic_hash": ""
   },
   "frontend/src/motion.js": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "frontend/vite.config.admin.js": {
-    "mtime": 1787351741.6516244,
-    "seen": 1787352405.5615168,
-    "ast_hash": "a5d911b6dfa5d8adc2412518a5654b57",
+    "mtime": 1787367648.0243106,
+    "seen": 1787367804.3823178,
+    "ast_hash": "249f2120d091ef75b18a0e622056ba61",
     "semantic_hash": ""
   },
   "frontend/vite.config.js": {

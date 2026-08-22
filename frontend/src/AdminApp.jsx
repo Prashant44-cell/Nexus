@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Lock } from 'lucide-react';
+import './admin.css';
 
 import AdminSidebar from './components/admin/AdminSidebar';
 import AdminNavbar from './components/admin/AdminNavbar';

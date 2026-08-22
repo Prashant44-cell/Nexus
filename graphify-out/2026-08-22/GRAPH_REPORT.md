@@ -1,7 +1,7 @@
 # Graph Report - Prasunethon 2.0 (same as  fintech + blockchain)  (2026-08-22)
 
 ## Corpus Check
-- 59 files · ~30,150 words
+- 59 files · ~30,629 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

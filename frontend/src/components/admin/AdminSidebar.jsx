@@ -197,6 +197,24 @@ export default function AdminSidebar({ activeTab, setActiveTab, isCollapsed, set
         </div>
       )}
 
+      {/* ── Customer Banking Switcher Shortcut ── */}
+      {!isCollapsed && (
+        <div style={{ padding: '0 0.85rem 0.6rem 0.85rem' }}>
+          <a
+            href={window.location.port === '3001' ? 'http://localhost:3000' : '/'}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '0.45rem',
+              padding: '0.45rem 0.65rem', borderRadius: 8,
+              background: 'rgba(26,153,117,0.06)', border: '1px solid rgba(26,153,117,0.2)',
+              color: '#1a9975', fontSize: '0.72rem', fontWeight: 600,
+              textDecoration: 'none', transition: 'all 0.15s ease'
+            }}
+          >
+            <Landmark size={14} /> Customer Banking Portal
+          </a>
+        </div>
+      )}
+
       {/* ── Admin User Footer ── */}
       <div style={{
         padding: '0.85rem',

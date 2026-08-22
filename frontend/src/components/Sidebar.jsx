@@ -227,6 +227,24 @@ export default function Sidebar({ activeTab, setActiveTab, isCollapsed, setIsCol
         </div>
       )}
 
+      {/* ── Admin Switcher Shortcut ── */}
+      {!isCollapsed && (
+        <div style={{ padding: '0 0.85rem 0.6rem 0.85rem' }}>
+          <a
+            href={window.location.port === '3000' ? 'http://localhost:3001' : '/admin'}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '0.45rem',
+              padding: '0.45rem 0.65rem', borderRadius: 8,
+              background: 'rgba(109,40,217,0.06)', border: '1px solid rgba(109,40,217,0.2)',
+              color: '#6d28d9', fontSize: '0.72rem', fontWeight: 600,
+              textDecoration: 'none', transition: 'all 0.15s ease'
+            }}
+          >
+            <ShieldCheck size={14} /> Admin Governance Console
+          </a>
+        </div>
+      )}
+
       {/* ── User Footer ── */}
       <div style={{
         padding: '0.85rem 0.85rem',

@@ -198,9 +198,31 @@ export default function AuthModal({ onAuthSuccess }) {
           </button>
         </form>
 
-        <p style={{ textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '1rem' }}>
+        <p style={{ textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '1rem', marginBottom: '0.75rem' }}>
           Protected by ZK-Proof Biometric Authentication · EIP-712 Signed Sessions
         </p>
+
+        <div style={{ paddingTop: '0.75rem', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
+          <a
+            href={window.location.port === '3000' ? 'http://localhost:3001' : '/admin'}
+            style={{
+              background: 'rgba(109, 40, 217, 0.08)',
+              border: '1px solid rgba(109, 40, 217, 0.25)',
+              color: '#6d28d9',
+              padding: '0.4rem 0.85rem',
+              borderRadius: '8px',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            🛡️ Go to Admin Governance Portal (Port 3001)
+          </a>
+        </div>
       </div>
     </div>
   );

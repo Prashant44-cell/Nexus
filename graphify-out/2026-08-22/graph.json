@@ -3370,7 +3370,7 @@
       "node_kind": "heading",
       "norm_label": "1. run backend automated tests",
       "source_file": "README.md",
-      "source_location": "L194"
+      "source_location": "L243"
     },
     {
       "id": "readme_2_test_production_frontend_builds",
@@ -3382,7 +3382,7 @@
       "node_kind": "heading",
       "norm_label": "2. test production frontend builds",
       "source_file": "README.md",
-      "source_location": "L200"
+      "source_location": "L249"
     },
     {
       "id": "readme_architecture_overview",
@@ -3406,7 +3406,7 @@
       "node_kind": "heading",
       "norm_label": "\ud83d\udd11 demo login credentials",
       "source_file": "README.md",
-      "source_location": "L181"
+      "source_location": "L230"
     },
     {
       "id": "readme_environment_configuration",
@@ -3418,7 +3418,7 @@
       "node_kind": "heading",
       "norm_label": "\ud83d\udd27 environment configuration",
       "source_file": "README.md",
-      "source_location": "L209"
+      "source_location": "L258"
     },
     {
       "id": "readme_execution_process_step_by_step",
@@ -3430,7 +3430,7 @@
       "node_kind": "heading",
       "norm_label": "\ud83d\ude80 execution process (step-by-step)",
       "source_file": "README.md",
-      "source_location": "L98"
+      "source_location": "L147"
     },
     {
       "id": "readme_nexus_blockbank_ai_resistant_continuous_identity_digital_banking_platform",
@@ -3454,7 +3454,7 @@
       "node_kind": "heading",
       "norm_label": "option 1: quick start (windows)",
       "source_file": "README.md",
-      "source_location": "L100"
+      "source_location": "L149"
     },
     {
       "id": "readme_option_2_manual_terminal_execution_any_os",
@@ -3466,7 +3466,7 @@
       "node_kind": "heading",
       "norm_label": "option 2: manual terminal execution (any os)",
       "source_file": "README.md",
-      "source_location": "L124"
+      "source_location": "L173"
     },
     {
       "id": "readme_option_3_full_stack_docker_container",
@@ -3478,7 +3478,7 @@
       "node_kind": "heading",
       "norm_label": "option 3: full-stack docker container",
       "source_file": "README.md",
-      "source_location": "L153"
+      "source_location": "L202"
     },
     {
       "id": "readme_prerequisites",
@@ -3490,7 +3490,7 @@
       "node_kind": "heading",
       "norm_label": "\u2699\ufe0f prerequisites",
       "source_file": "README.md",
-      "source_location": "L87"
+      "source_location": "L136"
     },
     {
       "id": "readme_project_structure",
@@ -3514,7 +3514,7 @@
       "node_kind": "heading",
       "norm_label": "terminal 1 \u2014 start the backend (port 8000)",
       "source_file": "README.md",
-      "source_location": "L128"
+      "source_location": "L177"
     },
     {
       "id": "readme_terminal_2_start_the_customer_portal_port_3000",
@@ -3526,7 +3526,7 @@
       "node_kind": "heading",
       "norm_label": "terminal 2 \u2014 start the customer portal (port 3000)",
       "source_file": "README.md",
-      "source_location": "L136"
+      "source_location": "L185"
     },
     {
       "id": "readme_terminal_3_start_the_admin_governance_portal_port_3001",
@@ -3538,7 +3538,7 @@
       "node_kind": "heading",
       "norm_label": "terminal 3 \u2014 start the admin governance portal (port 3001)",
       "source_file": "README.md",
-      "source_location": "L144"
+      "source_location": "L193"
     },
     {
       "id": "readme_testing_building",
@@ -3550,7 +3550,7 @@
       "node_kind": "heading",
       "norm_label": "\ud83e\uddea testing & building",
       "source_file": "README.md",
-      "source_location": "L192"
+      "source_location": "L241"
     },
     {
       "id": "frontend_package_dependencies",
@@ -11397,7 +11397,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L100",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
@@ -11408,7 +11408,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L124",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -11419,7 +11419,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L153",
+      "source_location": "L202",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_nexus_blockbank_ai_resistant_continuous_identity_digital_banking_platform",
+      "target": "readme_prerequisites",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L136",
+      "weight": 1.0
+    },
+    {
+      "source": "readme_nexus_blockbank_ai_resistant_continuous_identity_digital_banking_platform",
+      "target": "readme_execution_process_step_by_step",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "L147",
       "weight": 1.0
     },
     {
@@ -11430,7 +11452,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L181",
+      "source_location": "L230",
       "weight": 1.0
     },
     {
@@ -11441,7 +11463,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L192",
+      "source_location": "L241",
       "weight": 1.0
     },
     {
@@ -11452,7 +11474,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L209",
+      "source_location": "L258",
       "weight": 1.0
     },
     {
@@ -11478,28 +11500,6 @@
       "weight": 1.0
     },
     {
-      "source": "readme_nexus_blockbank_ai_resistant_continuous_identity_digital_banking_platform",
-      "target": "readme_prerequisites",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L87",
-      "weight": 1.0
-    },
-    {
-      "source": "readme_nexus_blockbank_ai_resistant_continuous_identity_digital_banking_platform",
-      "target": "readme_execution_process_step_by_step",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "L98",
-      "weight": 1.0
-    },
-    {
       "source": "readme_option_2_manual_terminal_execution_any_os",
       "target": "readme_terminal_1_start_the_backend_port_8000",
       "relation": "contains",
@@ -11507,7 +11507,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L128",
+      "source_location": "L177",
       "weight": 1.0
     },
     {
@@ -11518,7 +11518,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L136",
+      "source_location": "L185",
       "weight": 1.0
     },
     {
@@ -11529,7 +11529,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L144",
+      "source_location": "L193",
       "weight": 1.0
     },
     {
@@ -11540,7 +11540,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L194",
+      "source_location": "L243",
       "weight": 1.0
     },
     {
@@ -11551,7 +11551,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L200",
+      "source_location": "L249",
       "weight": 1.0
     },
     {

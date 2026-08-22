@@ -152,11 +152,33 @@ export default function AdminLogin({ onAuthSuccess }) {
         </form>
 
         <p style={{
-          fontSize: '0.72rem', color: '#9ca3af', marginTop: '1.1rem',
+          fontSize: '0.72rem', color: '#9ca3af', marginTop: '1.1rem', marginBottom: '0.75rem',
           textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem',
         }}>
           <Lock size={11} /> Client portal accounts cannot access this console.
         </p>
+
+        <div style={{ paddingTop: '0.75rem', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
+          <a
+            href={window.location.port === '3001' ? 'http://localhost:3000' : '/'}
+            style={{
+              background: 'rgba(26, 153, 117, 0.08)',
+              border: '1px solid rgba(26, 153, 117, 0.25)',
+              color: '#1a9975',
+              padding: '0.4rem 0.85rem',
+              borderRadius: '8px',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            🏦 Go to Customer Banking Portal (Port 3000)
+          </a>
+        </div>
       </div>
     </div>
   );
