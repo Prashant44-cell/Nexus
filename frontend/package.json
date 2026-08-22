@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --config vite.config.js",
     "dev:admin": "vite --config vite.config.admin.js",
-    "build:client": "vite build --config vite.config.js",
+    "build": "vite build",
+    "build:client": "vite build --outDir dist/client",
     "build:admin": "vite build --config vite.config.admin.js && node -e \"const fs=require('fs');fs.renameSync('dist/admin/admin.html','dist/admin/index.html');\"",
     "preview": "vite preview --config vite.config.js"
   },
