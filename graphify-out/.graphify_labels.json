@@ -1,7 +1,7 @@
 {
   "0": "main.py",
   "1": "api",
-  "2": "AttendancePanel.jsx",
+  "2": "fmtTime",
   "3": "models.py",
   "4": "package.json",
   "5": "Nexus BlockBank — AI-Resistant Continuous Identity & Digital Banking Platform",
@@ -17,5 +17,14 @@
   "15": "UserRole",
   "16": "post",
   "17": "test_api.py",
-  "18": "vercel.json"
+  "18": "vercel.json",
+  "19": "LumenHero.tsx",
+  "20": "postcss.config.js",
+  "21": "tailwind.config.js",
+  "22": "tailwindcss",
+  "23": "api.js",
+  "24": "CredentialManagement.jsx",
+  "25": "LoansDepositsPanel.jsx",
+  "26": "LumenHero.jsx",
+  "27": "AdminVerificationReview.jsx"
 }

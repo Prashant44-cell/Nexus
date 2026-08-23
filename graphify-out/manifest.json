@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "frontend/src/ClientApp.jsx": {
-    "mtime": 1787503083.9015658,
-    "seen": 1787503130.9995124,
-    "ast_hash": "8bd33b1737f4a6148676cb93bccc3e8d",
+    "mtime": 1787503563.1685736,
+    "seen": 1787503664.38514,
+    "ast_hash": "263388138809672e0ae99c54480b90f0",
     "semantic_hash": ""
   },
   "frontend/src/admin-main.jsx": {
@@ -312,9 +312,9 @@
     "semantic_hash": ""
   },
   "frontend/src/main.jsx": {
-    "mtime": 1787367657.5849466,
-    "seen": 1787367804.381869,
-    "ast_hash": "3bc1f7178fb7f05bcc3caa50935e8113",
+    "mtime": 1787503531.7546742,
+    "seen": 1787503664.39102,
+    "ast_hash": "b8287434b414c8677cf51de1577722cb",
     "semantic_hash": ""
   },
   "frontend/src/motion.js": {
@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1787352595.9873655,
-    "seen": 1787352608.8493779,
-    "ast_hash": "e5f15e0d65b366a929bf94818f702a98",
+    "mtime": 1787503723.968421,
+    "seen": 1787503741.555541,
+    "ast_hash": "74867d4728ed7f21b78326af38bf9966",
     "semantic_hash": ""
   },
   "backend/requirements-dev.txt": {
@@ -372,9 +372,9 @@
     "semantic_hash": ""
   },
   "frontend/index.html": {
-    "mtime": 1787351751.7050638,
-    "seen": 1787352405.5615427,
-    "ast_hash": "56fb9c93fc96f732bce7d544a584f0c6",
+    "mtime": 1787503494.294737,
+    "seen": 1787503664.392424,
+    "ast_hash": "37071a765d16e4cf894b34c05a461147",
     "semantic_hash": ""
   },
   "frontend/public/Hero page.mp4": {
@@ -393,6 +393,30 @@
     "mtime": 1787368650.2859023,
     "seen": 1787501886.2620547,
     "ast_hash": "6411d2fbb5f0e00aaff0ca0ded84e0b6",
+    "semantic_hash": ""
+  },
+  "frontend/postcss.config.js": {
+    "mtime": 1787503488.576042,
+    "seen": 1787503664.385001,
+    "ast_hash": "c735540bb63936a123bc867d950c9f69",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/LumenHero.jsx": {
+    "mtime": 1787503589.8906493,
+    "seen": 1787503664.3856845,
+    "ast_hash": "a4ce6b5ae54d3ad6ab8cabd12938d1ca",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/LumenHero.tsx": {
+    "mtime": 1787503600.8453362,
+    "seen": 1787503664.3856866,
+    "ast_hash": "c65c80987f0f0f7a5f28eadb89515ea9",
+    "semantic_hash": ""
+  },
+  "frontend/tailwind.config.js": {
+    "mtime": 1787503476.264046,
+    "seen": 1787503664.3911598,
+    "ast_hash": "373f2dade188407016bfab4cbb199464",
     "semantic_hash": ""
   }
 }

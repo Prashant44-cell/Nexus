@@ -25,7 +25,7 @@ import { usePanelMotion } from './motion';
 
 const SIGNAL_SEND_INTERVAL_MS = 1000;
 
-export default function ClientApp() {
+export default function ClientApp({ onReturnToWelcome }) {
   const [credential, setCredential] = useState(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [sessionId, setSessionId] = useState(null);
@@ -43,8 +43,7 @@ export default function ClientApp() {
       } else if (currentTheme === 'light') {
         document.body.classList.remove('dark-mode');
       } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (prefersDark) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
           document.body.classList.add('dark-mode');
         } else {
           document.body.classList.remove('dark-mode');
@@ -53,22 +52,9 @@ export default function ClientApp() {
     };
 
     handleThemeChange();
-    localStorage.setItem('theme', theme);
-
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', handleThemeChange);
-    } else {
-      mediaQuery.addListener(handleThemeChange);
-    }
-
-    return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener('change', handleThemeChange);
-      } else {
-        mediaQuery.removeListener(handleThemeChange);
-      }
-    };
+    mediaQuery.addEventListener('change', handleThemeChange);
+    return () => mediaQuery.removeEventListener('change', handleThemeChange);
   }, [theme]);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -78,43 +64,73 @@ export default function ClientApp() {
   const wsRef = useRef(null);
   const lastSentRef = useRef(0);
 
-  useEffect(() => () => wsRef.current?.close(), []);
-
-  usePanelMotion([activeTab, credential, termsAccepted]);
-
-  const connectWebSocket = (sesId, ticket) => {
-    const ws = new WebSocket(getWebSocketUrl(`/ws/trust/${sesId}`, ticket));
-    ws.onopen = () => setIsConnected(true);
-    ws.onclose = () => setIsConnected(false);
-    ws.onmessage = (event) => {
-      const result = JSON.parse(event.data);
-      setTrustResult(result);
-      if (result.recommended_action === 'revoke') setIsRevoked(true);
-    };
-    wsRef.current = ws;
-  };
-
-  const startSession = async (cred) => {
+  const startSession = async (userCred) => {
     try {
-      const data = await api('/auth/start', {
+      const response = await api('/auth/session/start', {
         method: 'POST',
         body: JSON.stringify({
-          user_id: cred.user_id,
-          device_id: 'WEB-CLIENT-BANKING',
-          ip_address: '127.0.0.1',
-          user_agent: navigator.userAgent,
-        }),
+          user_id: userCred.credential_id || 'USR-NEXUS-01',
+          initial_behavior_sig: 0.95,
+          initial_device_sig: 0.98,
+          initial_context_sig: 0.94,
+          consent_hash: userCred.consent_hash || '0xdefault'
+        })
       });
-      setSessionId(data.session_id);
-      connectWebSocket(data.session_id, data.websocket_ticket);
+
+      setSessionId(response.session_id);
+      setTrustResult({
+        trust_score: response.trust_score,
+        risk_level: response.risk_level,
+        latency_ms: 0,
+        reasons: ['SESSION_INITIALIZED']
+      });
+
+      connectWebSocket(response.session_id);
     } catch (err) {
       setSessionError(err.message);
     }
   };
 
+  const connectWebSocket = (sId) => {
+    try {
+      const ws = new WebSocket(getWebSocketUrl(sId));
+      wsRef.current = ws;
+
+      ws.onopen = () => {
+        setIsConnected(true);
+        setSessionError('');
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === 'TRUST_EVALUATION') {
+            setTrustResult(data.evaluation);
+          } else if (data.type === 'STEP_UP_CHALLENGE') {
+            // High risk prompt
+          } else if (data.type === 'CREDENTIAL_REVOKED') {
+            setIsRevoked(true);
+          }
+        } catch (e) {
+          // ignore malformed
+        }
+      };
+
+      ws.onclose = () => {
+        setIsConnected(false);
+      };
+
+      ws.onerror = () => {
+        setIsConnected(false);
+      };
+    } catch (e) {
+      setSessionError('WebSocket stream unavailable');
+    }
+  };
+
   const handleAuthSuccess = (data) => {
-    setCredential(data.credential);
-    setIsRevoked(false);
+    setToken(data.token);
+    setCredential(data.user);
   };
 
   const handleTermsAccepted = () => {
@@ -239,6 +255,23 @@ export default function ClientApp() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              {onReturnToWelcome && (
+                <button
+                  onClick={onReturnToWelcome}
+                  style={{
+                    background: 'rgba(175, 221, 255, 0.12)', border: '1px solid rgba(175, 221, 255, 0.35)',
+                    color: '#38bdf8', borderRadius: '10px', padding: '0.45rem 0.95rem',
+                    fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    transition: 'all 0.2s ease'
+                  }}
+                  className="neon-glow-hover font-graphik"
+                  title="Return to LŪMEN // ÍNDEX Landing"
+                >
+                  ✦ LŪMEN // ÍNDEX
+                </button>
+              )}
+
               <button
                 onClick={() => setActiveTab('explorer')}
                 style={{

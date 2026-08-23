@@ -6,23 +6,29 @@ Nexus BlockBank is a full-stack banking and identity-verification platform. It c
 
 ## 🏛️ Architecture Overview
 
-The system is organized into a modular **Backend** and a unified **Frontend**:
+The system is organized into a modular **Backend** and a unified **Frontend** fronted by the **LŪMEN // ÍNDEX** sovereign DeFi gateway:
 
 ```mermaid
 flowchart TD
-    subgraph Frontend ["Frontend (React + Vite)"]
-        CP["Customer Portal (:3000)"]
-        AP["Admin Portal (:3001)"]
+    subgraph Gateway ["Sovereign Gateway"]
+        WH["LŪMEN // ÍNDEX Welcome Hero (Viewport Locked)"]
+    end
+
+    subgraph Frontend ["Frontend (React 18 + Vite + Tailwind CSS)"]
+        CP["Customer Banking Portal (:3000)"]
+        AP["Admin Governance Console (:3001)"]
     end
 
     subgraph Backend ["Backend (FastAPI :8000)"]
         API["REST Endpoints (/api, /auth, /admin)"]
         WS["WebSocket Trust Stream (/ws/trust)"]
         DB["In-Memory Database & Ledgers"]
-        TE["Continuous Trust Engine"]
-        BC["Blockchain Proof Simulator (Sepolia)"]
+        TE["Continuous Trust Engine (1000ms)"]
+        BC["Blockchain Proof Simulator (Sepolia zk-Rollup)"]
     end
 
+    WH -->|"Explore Private Banking (Smooth Transition)"| CP
+    WH -->|"Direct Route"| AP
     CP -->|"Proxy & API Requests"| API
     CP -->|"Live Signals (1s)"| WS
     AP -->|"Governance & Audit"| API
@@ -33,11 +39,71 @@ flowchart TD
 
 | Component | Port (Dev) | Route (Prod) | Purpose |
 |---|---|---|---|
-| **Customer Portal** | `http://localhost:3000` | `/` | Banking dashboard, transfers, UPI, cards, loans, KYC & profile |
+| **LŪMEN // ÍNDEX Gateway** | `http://localhost:3000` | `/` | Ultra-high-fidelity DeFi private banking landing & welcome hero |
+| **Customer Portal** | `http://localhost:3000` | `/?view=app` | Banking dashboard, transfers, UPI, cards, loans, KYC & profile |
 | **Admin Portal** | `http://localhost:3001` | `/admin/` | Node governance, smart contracts, AML compliance, credentials |
 | **FastAPI Backend** | `http://localhost:8000` | `/` (API) | Core banking APIs, authentication, WebSocket trust engine |
 | **API Docs (Swagger)** | `http://localhost:8000/docs` | `/docs` | Interactive OpenAPI documentation & testing |
 | **API Health Check** | `http://localhost:8000/health` | `/health` | Live service health & metrics |
+
+---
+
+## ✨ LŪMEN // ÍNDEX — Sovereign DeFi & Private Banking Experience
+
+The platform features an initial **LŪMEN // ÍNDEX** DeFi & private-banking landing page rendering before all other views:
+
+### 🌟 Visual & Architectural Highlights
+
+* **Pure Viewport Lock (`h-screen overflow-hidden`):** Zero scroll, mathematical layout alignment using a unified **20px (mobile) / 35px (`md`+)** gutter.
+* **Full-Bleed Ambient Neural Video (Layer 0):** Autoplaying, looped, muted cinematic video backdrop without artificial dark scrims.
+* **Double Typography Stack:**
+  * **Display Font:** `Graphik LCG Regular Regular` for the `LŪMEN // ÍNDEX` wordmark and `Liquid Assets. Luminous Returns.` H1.
+  * **UI Font:** `Manrope` (400/500) for all telemetry chips, node labels, and technical parameters.
+* **Precision Viewport Grid System:** 4 vertical lines (`12.6%`, `37.5%`, `61.9%`, `86.2%`), 2 horizontal lines (`32.7%`, `71.4%`), and 8 plus intersections with `-translate-x-1/2 -translate-y-1/2` optical centering.
+* **Distributed Neural Node Topology:**
+  * `[ CORE_ENTITY ]` — Neural node processing real-time data streams (`top-[27%] left-[60%]`).
+  * `[ LUMINOUS_INSIGHT ]` — Deep-learning engine synthesizing raw inputs (`top-[58%] left-[32%]`).
+  * `[ CONNECTIVITY ]` — Latency-free transmission across distributed networks (`top-[63%] left-[50%]`).
+  * 6 vector SVG elbow connector lines linking labels to squares with pixel-perfect coordinate precision.
+* **Chamfered Institutional Info Card:** 45° angled corner border drawn via inline SVG polygon (`0.5,0.5 279.5,0.5 279.5,167.5 30,167.5 0.5,137.5`), `NOT A BANK — AN ECOSYSTEM` badge, and `VIEW_TRANSPARENCY_REPORT` link.
+* **Cinematic Page Transitions:** Smooth `cubic-bezier(0.76, 0, 0.24, 1)` scaling blur-fade transition seamlessly moving users from the welcome page into the private banking workspace.
+
+---
+
+## 🛡️ 14-Clause Cryptographic Rules & Regulations System
+
+Authentication incorporates an authentic 14-clause regulatory and Web3 agreement:
+
+1. **Zero-Knowledge Cryptographic Proofs & Identity Vectors:** Privacy-preserving biometric and credential assertions.
+2. **Continuous Telemetry & Dynamic Trust Scoring:** Real-time session monitoring with 1000ms WebSocket heartbeats.
+3. **Immutable Ledger State on Ethereum Sepolia zk-Rollup:** Cryptographic immutability and verifiable transaction state.
+4. **Multi-Jurisdictional RBI, Basel III & GDPR Compliance:** Cross-border prudential and data privacy compliance.
+5. **Step-Up Cryptographic Challenges & Non-Custodial MFA:** Dynamic authentication triggered by trust-score decay.
+6. **Institutional Vault Safeguards & Asset Segregation:** Tier-1 reserve backing and cold-storage vault separation.
+7. **Real-Time NPCI UPI 2.0 Fast-Path Interoperability:** Instant zero-fee peer-to-peer and merchant routing.
+8. **Hardware Security Module (HSM) & FIDO2 Key Binding:** Cryptographic device attestation and WebAuthn credentials.
+9. **Autonomous Smart Contract Emergency Freezes:** Multi-signature regulatory circuit breakers.
+10. **7-Year Immutable PBFT Audit Trail Retention:** Tamper-evident session and transaction logging.
+11. **Oracle Governance & Cross-Chain State Anchoring:** Byzantine Fault Tolerant price feeds and state validation.
+12. **Decentralized Key Custody & Loss of Private Keys:** Self-sovereign recovery parameters and guardian social recovery.
+13. **Right to Erasure with Cryptographic Vector Shredding:** GDPR-compliant biometric vector shredding.
+14. **Dispute Resolution & UNCITRAL Smart Arbitration:** On-chain arbitration and legally binding resolution mechanisms.
+
+---
+
+## 💎 Sovereign Profile & Cryptographic Vault
+
+The customer profile section provides an institutional-grade sovereign management suite:
+
+* **Executive Identity Banner:** Initials avatar badge, customer tier, verified sovereign status tag, and 99.4% live trust score.
+* **Financial Portfolio Metric Cards:** Net worth (`₹14,85,250.00`), liquid reserve cash (`₹4,32,100.00`), CIBIL / Credit index (`840/900 Tier 1 Prime`), and daily limit (`₹10,00,000.00`).
+* **One-Click Cryptographic Copy:** Instant clipboard copy with visual checkmark feedback for **Unique User ZK Key** and **Sepolia Ledger Wallet Address**.
+* **5 Dedicated Sub-Navigation Suites:**
+  1. *Personal & Contact Details* — Full name, DOB, gender, phone, email, residential address, country jurisdiction.
+  2. *Banking & Financial Limits* — Primary checking `ACC-NEX-884920`, UPI `aarav_sharma@nexusbank`, RTGS / Wire caps.
+  3. *Cryptographic & Security Keys* — Retina Biometric Hash Vector, EIP-712 session tickets, and FIDO2 binding.
+  4. *KYC Document Vault* — Aadhaar UIDAI ZK-XML, PAN Card, Passport, front/back scan encryption.
+  5. *Immutable Audit Timeline* — Session timestamps, EIP-712 token issuance, and ZK verification logs.
 
 ---
 
@@ -100,6 +166,8 @@ Nexus/
 │   │   │   │   ├── PaymentsUPIPanel.jsx # P2P transfers & UPI payments
 │   │   │   │   ├── ProfilePanel.jsx     # User settings, retina vectors & keys
 │   │   │   │   └── RewardsSupportPanel.jsx # Cashbacks & 24/7 bank support
+│   │   │   ├── LumenHero.jsx            # LŪMEN // ÍNDEX sovereign welcome hero
+│   │   │   ├── LumenHero.tsx            # TypeScript implementation of LumenHero
 │   │   │   ├── AuthModal.jsx            # Customer credentials & Web3 sign-in modal
 │   │   │   ├── BackgroundVideo.jsx      # Customer portal ambient video
 │   │   │   ├── Shared.jsx               # Customer reusable UI components
@@ -113,13 +181,15 @@ Nexus/
 │   │   ├── AdminApp.jsx                 # Admin Governance Portal root component
 │   │   ├── api.js                       # Unified API client, hooks & CSV exporter
 │   │   ├── ClientApp.jsx                # Customer Banking Portal root component
-│   │   ├── index.css                    # Customer portal styles & glassmorphism
-│   │   ├── main.jsx                     # Entry point mounting <ClientApp />
+│   │   ├── index.css                    # Customer portal styles, Tailwind & keyframes
+│   │   ├── main.jsx                     # Entry point mounting <Root /> with Welcome flow
 │   │   └── motion.js                    # Delegated 3D tilt & reveal-on-scroll animations
 │   ├── .env.example                     # Frontend environment variables template
 │   ├── admin.html                       # Admin portal HTML shell (port 3001)
 │   ├── index.html                       # Customer portal HTML shell (port 3000)
 │   ├── package.json                     # Merged frontend dependencies & scripts
+│   ├── postcss.config.js                # PostCSS Tailwind configuration
+│   ├── tailwind.config.js               # Tailwind CSS arbitrary-value configuration
 │   ├── vite.config.js                   # Client Vite config (port 3000 -> 8000 proxy)
 │   └── vite.config.admin.js             # Admin Vite config (port 3001 -> 8000 proxy)
 │
