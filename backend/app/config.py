@@ -11,7 +11,7 @@ def _as_bool(name: str, default: bool) -> bool:
 APP_ENV = os.getenv("APP_ENV", "development").strip().lower()
 IS_PRODUCTION = APP_ENV in {"production", "prod"}
 DEMO_MODE = _as_bool("DEMO_MODE", not IS_PRODUCTION)
-PUBLIC_SIGNUP_ENABLED = _as_bool("PUBLIC_SIGNUP_ENABLED", not IS_PRODUCTION)
+PUBLIC_SIGNUP_ENABLED = _as_bool("PUBLIC_SIGNUP_ENABLED", True)
 WEB3_DEMO_AUTH_ENABLED = _as_bool("WEB3_DEMO_AUTH_ENABLED", DEMO_MODE and not IS_PRODUCTION)
 
 JWT_SECRET = os.getenv("JWT_SECRET", "")
