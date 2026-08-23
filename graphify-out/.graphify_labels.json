@@ -1,7 +1,7 @@
 {
   "0": "main.py",
   "1": "api",
-  "2": "api.js",
+  "2": "AttendancePanel.jsx",
   "3": "models.py",
   "4": "package.json",
   "5": "Nexus BlockBank — AI-Resistant Continuous Identity & Digital Banking Platform",
@@ -16,5 +16,6 @@
   "14": "RiskLevel",
   "15": "UserRole",
   "16": "post",
-  "17": "test_api.py"
+  "17": "test_api.py",
+  "18": "vercel.json"
 }

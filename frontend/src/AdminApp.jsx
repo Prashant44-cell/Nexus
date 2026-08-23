@@ -65,7 +65,7 @@ export default function AdminApp() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', position: 'relative', background: '#f0f2f5' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', position: 'relative', background: 'var(--bg-page)', color: 'var(--text-main)', transition: 'background-color 0.28s ease' }}>
       <AdminSidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -85,22 +85,23 @@ export default function AdminApp() {
 
         {/* Admin info bar */}
         <div style={{
-          background: '#fff',
-          border: '1px solid #e8ecf0',
-          borderRadius: '10px',
-          padding: '0.65rem 1rem',
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border)',
+          borderRadius: '12px',
+          padding: '0.75rem 1.1rem',
           marginBottom: '1.5rem',
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
-          fontSize: '0.78rem',
-          color: '#4b5563',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
-        }}>
-          <Lock size={14} color="#6d28d9" />
+          gap: '0.6rem',
+          fontSize: '0.8rem',
+          color: 'var(--text-secondary)',
+          boxShadow: 'var(--shadow-sm)',
+          transition: 'all 0.28s ease',
+        }} className="neon-purple-hover">
+          <Lock size={15} color="#8b5cf6" />
           <span>
-            <strong style={{ color: '#1a2332' }}>Central Bank Governance Portal:</strong>{' '}
-            Signed in as <strong style={{ color: '#6d28d9' }}>{admin.credential.full_name}</strong>{' '}
+            <strong style={{ color: 'var(--text-main)' }}>Central Bank Governance Portal:</strong>{' '}
+            Signed in as <strong style={{ color: '#8b5cf6' }}>{admin.credential.full_name}</strong>{' '}
             ({admin.credential.user_role}). Regulatory authority to govern Hyperledger Besu nodes &amp; smart contracts.
           </span>
         </div>

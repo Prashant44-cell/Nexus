@@ -101,25 +101,111 @@ body {
   display: none;
 }
 
-.glass-panel {
+.glass-panel, .card, .card-box {
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   box-shadow: var(--shadow-card);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--border-active);
+.glass-panel:hover, .card:hover, .card-box:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 0 20px rgba(26, 153, 117, 0.22);
+  border-color: rgba(26, 153, 117, 0.5);
   transform: translateY(-2px);
 }
 
+body.dark-mode .glass-panel:hover,
+body.dark-mode .card:hover,
+body.dark-mode .card-box:hover {
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(26, 153, 117, 0.35);
+  border-color: rgba(26, 153, 117, 0.65);
+}
+
 .glass-panel::before,
-.glass-panel::after {
+.glass-panel::after,
+.card::before,
+.card::after {
   display: none;
+}
+
+/* ============================================================
+   Neon Glow System (Mouse Hover Luminescence)
+   ============================================================ */
+.neon-glow-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.neon-glow-hover:hover {
+  box-shadow: 0 0 20px rgba(26, 153, 117, 0.55), 0 0 35px rgba(26, 153, 117, 0.25) !important;
+  border-color: rgba(26, 153, 117, 0.8) !important;
+  transform: translateY(-2px) !important;
+}
+
+.neon-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neon-card:hover {
+  border-color: #1a9975;
+  box-shadow: 0 0 25px rgba(26, 153, 117, 0.35), 0 8px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.neon-cyan-hover:hover {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5), 0 0 35px rgba(6, 182, 212, 0.2) !important;
+  border-color: rgba(6, 182, 212, 0.7) !important;
+}
+
+.neon-purple-hover:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), 0 0 35px rgba(139, 92, 246, 0.2) !important;
+  border-color: rgba(139, 92, 246, 0.7) !important;
+}
+
+.neon-amber-hover:hover {
+  box-shadow: 0 0 20px rgba(240, 165, 0, 0.5), 0 0 35px rgba(240, 165, 0, 0.2) !important;
+  border-color: rgba(240, 165, 0, 0.7) !important;
+}
+
+/* Clause card hover */
+.clause-card:hover {
+  border-color: #1a9975 !important;
+  box-shadow: 0 0 15px rgba(26, 153, 117, 0.25) !important;
+  transform: translateX(3px);
+}
+
+/* Smooth transition defaults */
+body, aside, main, header, nav, .glass-panel, .card, .card-box, input, select, textarea, button, table, tr, th, td {
+  transition: background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(26, 153, 117, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(26, 153, 117, 0.6); }
+}
+
+.pulse-neon {
+  animation: pulseGlow 2.5s infinite ease-in-out;
 }
 
 .glass-panel.motion-panel {
@@ -136,6 +222,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .glass-panel,
   .glass-panel:hover,
+  .card:hover,
   .glass-panel.motion-panel {
     opacity: 1;
     transform: none;

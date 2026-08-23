@@ -229,11 +229,11 @@ export default function ClientApp() {
                 <Landmark size={20} color="#fff" />
               </div>
               <div>
-                <h1 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1a2332', margin: 0 }}>
+                <h1 style={{ fontSize: '1.08rem', fontWeight: 800, color: 'var(--text-main)', margin: 0, letterSpacing: '-0.02em' }}>
                   Nexus Global Reserve Bank
                 </h1>
-                <p style={{ color: '#9ca3af', fontSize: '0.75rem', margin: 0 }}>
-                  Blockchain-Native Core Banking · Hyperledger Besu PBFT
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: 0 }}>
+                  Blockchain-Native Core Banking · Sepolia zk-Rollup PBFT
                 </p>
               </div>
             </div>
@@ -243,67 +243,83 @@ export default function ClientApp() {
                 onClick={() => setActiveTab('explorer')}
                 style={{
                   background: 'rgba(26,153,117,0.1)', border: '1px solid rgba(26,153,117,0.25)',
-                  color: '#1a9975', borderRadius: '8px', padding: '0.4rem 0.85rem',
-                  fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer',
-                  display: 'flex', alignItems: 'center', gap: '0.35rem'
+                  color: '#1a9975', borderRadius: '10px', padding: '0.45rem 0.95rem',
+                  fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: '0.4rem',
+                  transition: 'all 0.2s ease'
                 }}
+                className="neon-glow-hover"
               >
-                <Database size={13} /> 60+ Field Inspector
+                <Database size={14} /> 60+ Field Inspector
               </button>
 
               {/* Theme Selector Switcher */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', background: 'var(--bg-page)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.2rem 0.35rem' }}>
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: '0.25rem',
+                background: 'var(--bg-page)', border: '1px solid var(--border)',
+                borderRadius: '10px', padding: '0.25rem 0.4rem',
+                boxShadow: 'var(--shadow-sm)'
+              }}>
                 <button
                   onClick={() => setTheme('light')}
                   title="Light Theme"
                   style={{
                     background: theme === 'light' ? 'var(--bg-card)' : 'transparent',
-                    border: 'none', borderRadius: '5px', color: theme === 'light' ? '#1a9975' : '#9ca3af',
-                    padding: '0.25rem', cursor: 'pointer', display: 'flex', alignItems: 'center', transition: 'all 0.15s'
+                    border: 'none', borderRadius: '6px', color: theme === 'light' ? '#1a9975' : 'var(--text-muted)',
+                    padding: '0.3rem', cursor: 'pointer', display: 'flex', alignItems: 'center',
+                    boxShadow: theme === 'light' ? '0 1px 4px rgba(0,0,0,0.1)' : 'none',
+                    transition: 'all 0.2s ease'
                   }}
+                  className={theme === 'light' ? 'neon-glow-hover' : ''}
                 >
-                  <Sun size={14} />
+                  <Sun size={15} />
                 </button>
                 <button
                   onClick={() => setTheme('dark')}
                   title="Dark Theme"
                   style={{
                     background: theme === 'dark' ? 'var(--bg-card)' : 'transparent',
-                    border: 'none', borderRadius: '5px', color: theme === 'dark' ? '#1a9975' : '#9ca3af',
-                    padding: '0.25rem', cursor: 'pointer', display: 'flex', alignItems: 'center', transition: 'all 0.15s'
+                    border: 'none', borderRadius: '6px', color: theme === 'dark' ? '#1a9975' : 'var(--text-muted)',
+                    padding: '0.3rem', cursor: 'pointer', display: 'flex', alignItems: 'center',
+                    boxShadow: theme === 'dark' ? '0 1px 4px rgba(0,0,0,0.2)' : 'none',
+                    transition: 'all 0.2s ease'
                   }}
+                  className={theme === 'dark' ? 'neon-glow-hover' : ''}
                 >
-                  <Moon size={14} />
+                  <Moon size={15} />
                 </button>
                 <button
                   onClick={() => setTheme('system')}
                   title="System Theme"
                   style={{
                     background: theme === 'system' ? 'var(--bg-card)' : 'transparent',
-                    border: 'none', borderRadius: '5px', color: theme === 'system' ? '#1a9975' : '#9ca3af',
-                    padding: '0.25rem', cursor: 'pointer', display: 'flex', alignItems: 'center', transition: 'all 0.15s'
+                    border: 'none', borderRadius: '6px', color: theme === 'system' ? '#1a9975' : 'var(--text-muted)',
+                    padding: '0.3rem', cursor: 'pointer', display: 'flex', alignItems: 'center',
+                    boxShadow: theme === 'system' ? '0 1px 4px rgba(0,0,0,0.1)' : 'none',
+                    transition: 'all 0.2s ease'
                   }}
+                  className={theme === 'system' ? 'neon-glow-hover' : ''}
                 >
-                  <Monitor size={14} />
+                  <Monitor size={15} />
                 </button>
               </div>
 
               <span style={{
-                fontSize: '0.7rem', padding: '0.3rem 0.65rem', borderRadius: 9999,
-                background: 'rgba(16,185,129,0.1)', color: '#059669',
-                border: '1px solid rgba(16,185,129,0.25)', fontWeight: 600,
-                display: 'flex', alignItems: 'center', gap: '0.35rem',
+                fontSize: '0.72rem', padding: '0.35rem 0.75rem', borderRadius: 9999,
+                background: 'rgba(16,185,129,0.12)', color: '#10b981',
+                border: '1px solid rgba(16,185,129,0.3)', fontWeight: 700,
+                display: 'flex', alignItems: 'center', gap: '0.4rem',
               }}>
-                <Lock size={11} /> EIP-712 AUTHENTICATED
+                <Lock size={12} /> EIP-712 AUTHENTICATED
               </span>
             </div>
           </header>
 
           {sessionError && (
             <div style={{
-              background: '#fffbeb', border: '1px solid #fde68a',
-              borderRadius: '12px', marginBottom: '1.5rem', padding: '0.8rem 1rem',
-              fontSize: '0.85rem', color: '#92400e',
+              background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.3)',
+              borderRadius: '12px', marginBottom: '1.5rem', padding: '0.85rem 1.1rem',
+              fontSize: '0.85rem', color: '#f59e0b',
             }}>
               ⚠ Banking Session Notice: {sessionError}
             </div>
@@ -311,14 +327,14 @@ export default function ClientApp() {
 
           {isRevoked && (
             <div style={{
-              background: '#fef2f2', border: '1px solid #fecaca',
-              borderRadius: '12px', marginBottom: '1.5rem', padding: '1rem',
+              background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)',
+              borderRadius: '14px', marginBottom: '1.5rem', padding: '1.1rem',
               display: 'flex', alignItems: 'center', gap: '1rem',
             }}>
-              <AlertOctagon size={28} color="#dc2626" />
+              <AlertOctagon size={30} color="#ef4444" />
               <div>
-                <h3 style={{ color: '#b91c1c', fontSize: '0.95rem', margin: 0 }}>Account Asset Frozen by Regulatory Node</h3>
-                <p style={{ fontSize: '0.82rem', color: '#ef4444', margin: '0.2rem 0 0 0' }}>
+                <h3 style={{ color: '#ef4444', fontSize: '1rem', margin: 0, fontWeight: 800 }}>Account Asset Frozen by Regulatory Node</h3>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '0.25rem 0 0 0' }}>
                   Suspicious activity flag recorded. Contact Reserve Bank Regulator Node to verify identity.
                 </p>
               </div>
@@ -331,8 +347,20 @@ export default function ClientApp() {
 
       {/* Floating 60+ Field Metadata Modal */}
       {inspectModalMetadata && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(20,30,48,0.55)', backdropFilter: 'blur(10px)', zIndex: 1100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-          <div style={{ background: '#fff', border: '1px solid #e8ecf0', borderRadius: '20px', padding: '1.5rem', width: '900px', maxWidth: '95%', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 20px 60px rgba(0,0,0,0.18)' }}>
+        <div style={{
+          position: 'fixed', inset: 0,
+          background: 'rgba(10,18,30,0.75)', backdropFilter: 'blur(12px)',
+          zIndex: 1100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem',
+          animation: 'fadeIn 0.25s ease-out'
+        }}>
+          <div style={{
+            background: 'var(--bg-card)', border: '1px solid var(--border)',
+            borderRadius: '24px', padding: '1.75rem', width: '920px', maxWidth: '95%',
+            maxHeight: '90vh', overflowY: 'auto',
+            boxShadow: '0 25px 70px rgba(0,0,0,0.35), 0 0 30px rgba(26,153,117,0.2)',
+            color: 'var(--text-main)',
+            animation: 'modalSlideUp 0.3s cubic-bezier(0.16,1,0.3,1)'
+          }}>
             <MetadataExplorer initialMetadata={inspectModalMetadata} onClose={() => setInspectModalMetadata(null)} />
           </div>
         </div>

@@ -165,24 +165,27 @@ export default function Sidebar({ activeTab, setActiveTab, isCollapsed, setIsCol
                           alignItems: 'center',
                           gap: isCollapsed ? 0 : '0.6rem',
                           justifyContent: isCollapsed ? 'center' : 'flex-start',
-                          padding: isCollapsed ? '0.65rem 0' : '0.5rem 0.75rem',
-                          borderRadius: 8,
+                          padding: isCollapsed ? '0.65rem 0' : '0.55rem 0.75rem',
+                          borderRadius: 10,
                           border: 'none',
-                          background: isActive ? 'rgba(26,153,117,0.1)' : 'transparent',
+                          background: isActive ? 'rgba(26,153,117,0.14)' : 'transparent',
                           color: isActive ? '#1a9975' : 'var(--text-secondary)',
                           cursor: 'pointer',
-                          fontWeight: isActive ? 600 : 400,
+                          fontWeight: isActive ? 700 : 500,
                           fontSize: '0.82rem',
-                          transition: 'all 0.14s ease',
+                          transition: 'all 0.18s ease',
                           width: '100%',
                           textAlign: 'left',
                           position: 'relative',
+                          boxShadow: isActive ? '0 0 15px rgba(26,153,117,0.2)' : 'none'
                         }}
+                        className={!isActive ? "neon-glow-hover" : ""}
                       >
                         {isActive && !isCollapsed && (
                           <span style={{
                             position: 'absolute', left: 0, top: '20%', bottom: '20%',
-                            width: 3, background: '#1a9975', borderRadius: '0 3px 3px 0'
+                            width: 3, background: '#1a9975', borderRadius: '0 3px 3px 0',
+                            boxShadow: '0 0 8px #1a9975'
                           }} />
                         )}
                         <Icon

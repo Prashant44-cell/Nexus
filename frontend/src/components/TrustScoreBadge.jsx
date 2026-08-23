@@ -23,10 +23,10 @@ export default function TrustScoreBadge({ trustResult, isConnected }) {
   };
 
   return (
-    <div className="glass-panel" style={{ textAlign: 'center' }}>
+    <div className="glass-panel neon-glow-hover" style={{ textAlign: 'center' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h3 style={{ fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Activity size={18} color="#06b6d4" /> Live Session Trust Engine
+        <h3 style={{ fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-main)' }}>
+          <Activity size={18} color="#1a9975" /> Live Session Trust Engine
         </h3>
         <span style={{ fontSize: '0.75rem', color: isConnected ? '#10b981' : '#f59e0b', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
           <span style={{
@@ -34,7 +34,8 @@ export default function TrustScoreBadge({ trustResult, isConnected }) {
             height: '8px',
             borderRadius: '50%',
             background: isConnected ? '#10b981' : '#f59e0b',
-            display: 'inline-block'
+            display: 'inline-block',
+            boxShadow: isConnected ? '0 0 8px #10b981' : 'none'
           }}></span>
           {isConnected ? 'WebSocket Active' : 'Polling Sync'}
         </span>
@@ -42,8 +43,8 @@ export default function TrustScoreBadge({ trustResult, isConnected }) {
 
       {trustResult ? (
         <>
-      <div className="score-circle" style={{ borderColor: getScoreColor() }}>
-        <span className="mono-font" style={{ fontSize: '2.2rem', fontWeight: '800', color: '#ffffff' }}>
+      <div className="score-circle pulse-neon" style={{ borderColor: getScoreColor(), margin: '0 auto' }}>
+        <span className="mono-font" style={{ fontSize: '2.2rem', fontWeight: '800', color: getScoreColor() }}>
           {score}%
         </span>
         <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '-4px' }}>TRUST SCORE</span>
@@ -65,8 +66,8 @@ export default function TrustScoreBadge({ trustResult, isConnected }) {
         gap: '0.4rem',
         marginTop: '0.75rem',
         fontSize: '0.775rem',
-        color: '#06b6d4',
-        background: 'rgba(6, 182, 212, 0.08)',
+        color: '#1a9975',
+        background: 'rgba(26, 153, 117, 0.1)',
         padding: '0.4rem 0.75rem',
         borderRadius: '20px',
         width: 'fit-content',
@@ -76,16 +77,17 @@ export default function TrustScoreBadge({ trustResult, isConnected }) {
         <span>Execution Latency: <strong>{latency} ms</strong> (Target: &lt;50ms)</span>
       </div>
 
-      <div style={{ marginTop: '1rem', textAlign: 'left', background: 'rgba(0,0,0,0.3)', padding: '0.75rem', borderRadius: '10px' }}>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.35rem' }}>TRUST REASON CODES</span>
+      <div style={{ marginTop: '1rem', textAlign: 'left', background: 'var(--bg-page)', border: '1px solid var(--border)', padding: '0.75rem', borderRadius: '10px' }}>
+        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.35rem', fontWeight: 700 }}>TRUST REASON CODES</span>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
           {reasons.map((r, i) => (
             <span key={i} className="mono-font" style={{
               fontSize: '0.7rem',
-              background: 'rgba(255,255,255,0.06)',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border)',
               padding: '0.2rem 0.5rem',
               borderRadius: '6px',
-              color: '#d1d5db'
+              color: 'var(--text-secondary)'
             }}>
               {r}
             </span>

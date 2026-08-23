@@ -849,28 +849,100 @@
       "source_location": "L15"
     },
     {
-      "id": "frontend_src_components_admin_panels_bankingadmindashboard_bankingadmindashboard",
-      "label": "BankingAdminDashboard()",
+      "id": "frontend_src_api_getwebsocketurl",
+      "label": "getWebSocketUrl()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "api",
       "file_type": "code",
-      "norm_label": "bankingadmindashboard()",
-      "source_file": "frontend/src/components/admin/panels/BankingAdminDashboard.jsx",
-      "source_location": "L5"
+      "norm_label": "getwebsocketurl()",
+      "source_file": "frontend/src/api.js",
+      "source_location": "L29"
     },
     {
-      "id": "frontend_src_components_admin_panels_credentialmanagement_credentialmanagement",
-      "label": "CredentialManagement()",
+      "id": "frontend_src_api_setadmintoken",
+      "label": "setAdminToken()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "api",
       "file_type": "code",
-      "norm_label": "credentialmanagement()",
-      "source_file": "frontend/src/components/admin/panels/CredentialManagement.jsx",
+      "norm_label": "setadmintoken()",
+      "source_file": "frontend/src/api.js",
+      "source_location": "L10"
+    },
+    {
+      "id": "frontend_src_api_setclienttoken",
+      "label": "setClientToken()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "setclienttoken()",
+      "source_file": "frontend/src/api.js",
+      "source_location": "L9"
+    },
+    {
+      "id": "frontend_src_api_settoken",
+      "label": "setToken()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "settoken()",
+      "source_file": "frontend/src/api.js",
       "source_location": "L8"
+    },
+    {
+      "id": "frontend_src_api_userisksummary",
+      "label": "useRiskSummary()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "userisksummary()",
+      "source_file": "frontend/src/api.js",
+      "source_location": "L66"
+    },
+    {
+      "id": "frontend_src_clientapp_clientapp",
+      "label": "ClientApp()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "clientapp()",
+      "source_file": "frontend/src/ClientApp.jsx",
+      "source_location": "L28"
+    },
+    {
+      "id": "frontend_src_components_admin_adminlogin_adminlogin",
+      "label": "AdminLogin()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "adminlogin()",
+      "source_file": "frontend/src/components/admin/AdminLogin.jsx",
+      "source_location": "L22"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_adminverificationreview_adminverificationreview",
+      "label": "AdminVerificationReview()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "adminverificationreview()",
+      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
+      "source_location": "L23"
     },
     {
       "id": "frontend_src_components_authmodal_authmodal",
@@ -894,7 +966,7 @@
       "file_type": "code",
       "norm_label": "labelled()",
       "source_file": "frontend/src/components/AuthModal.jsx",
-      "source_location": "L231"
+      "source_location": "L240"
     },
     {
       "id": "frontend_src_components_backgroundvideo_backgroundvideo",
@@ -1002,7 +1074,7 @@
       "file_type": "code",
       "norm_label": "profilepanel()",
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L27"
+      "source_location": "L33"
     },
     {
       "id": "frontend_src_components_panels_rewardssupportpanel_rewardssupportpanel",
@@ -1050,19 +1122,7 @@
       "file_type": "code",
       "norm_label": "termsmodal()",
       "source_file": "frontend/src/components/TermsModal.jsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "frontend_src_components_trustscorebadge_trustscorebadge",
-      "label": "TrustScoreBadge()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "api",
-      "file_type": "code",
-      "norm_label": "trustscorebadge()",
-      "source_file": "frontend/src/components/TrustScoreBadge.jsx",
-      "source_location": "L5"
+      "source_location": "L82"
     },
     {
       "id": "frontend_src_components_walletcard_walletcard",
@@ -1101,64 +1161,28 @@
       "source_location": "L21"
     },
     {
-      "id": "frontend_src_api_getwebsocketurl",
-      "label": "getWebSocketUrl()",
+      "id": "frontend_src_api_fmttime",
+      "label": "fmtTime()",
       "_callable": true,
       "_origin": "ast",
       "community": 13,
       "community_name": "AdminApp.jsx",
       "file_type": "code",
-      "norm_label": "getwebsocketurl()",
+      "norm_label": "fmttime()",
       "source_file": "frontend/src/api.js",
-      "source_location": "L29"
+      "source_location": "L92"
     },
     {
-      "id": "frontend_src_api_settoken",
-      "label": "setToken()",
+      "id": "frontend_src_api_riskclass",
+      "label": "riskClass()",
       "_callable": true,
       "_origin": "ast",
       "community": 13,
       "community_name": "AdminApp.jsx",
       "file_type": "code",
-      "norm_label": "settoken()",
+      "norm_label": "riskclass()",
       "source_file": "frontend/src/api.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "frontend_src_api_userisksummary",
-      "label": "useRiskSummary()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "userisksummary()",
-      "source_file": "frontend/src/api.js",
-      "source_location": "L66"
-    },
-    {
-      "id": "frontend_src_clientapp_clientapp",
-      "label": "ClientApp()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "clientapp()",
-      "source_file": "frontend/src/ClientApp.jsx",
-      "source_location": "L28"
-    },
-    {
-      "id": "frontend_src_components_admin_adminlogin_adminlogin",
-      "label": "AdminLogin()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "adminlogin()",
-      "source_file": "frontend/src/components/admin/AdminLogin.jsx",
-      "source_location": "L22"
+      "source_location": "L95"
     },
     {
       "id": "frontend_src_components_admin_adminnavbar_adminnavbar",
@@ -1185,18 +1209,6 @@
       "source_location": "L37"
     },
     {
-      "id": "frontend_src_components_admin_panels_adminverificationreview_adminverificationreview",
-      "label": "AdminVerificationReview()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "adminverificationreview()",
-      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
-      "source_location": "L23"
-    },
-    {
       "id": "frontend_src_components_admin_panels_amlcompliancepanel_amlcompliancepanel",
       "label": "AMLCompliancePanel()",
       "_callable": true,
@@ -1221,6 +1233,42 @@
       "source_location": "L6"
     },
     {
+      "id": "frontend_src_components_admin_panels_bankingadmindashboard_bankingadmindashboard",
+      "label": "BankingAdminDashboard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "bankingadmindashboard()",
+      "source_file": "frontend/src/components/admin/panels/BankingAdminDashboard.jsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_credentialmanagement_credentialmanagement",
+      "label": "CredentialManagement()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "credentialmanagement()",
+      "source_file": "frontend/src/components/admin/panels/CredentialManagement.jsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_livesessions_livesessions",
+      "label": "LiveSessions()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "livesessions()",
+      "source_file": "frontend/src/components/admin/panels/LiveSessions.jsx",
+      "source_location": "L6"
+    },
+    {
       "id": "frontend_src_components_admin_panels_smartcontractregistry_smartcontractregistry",
       "label": "SmartContractRegistry()",
       "_callable": true,
@@ -1233,6 +1281,18 @@
       "source_location": "L5"
     },
     {
+      "id": "frontend_src_components_admin_panels_superadmindashboard_superadmindashboard",
+      "label": "SuperAdminDashboard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "superadmindashboard()",
+      "source_file": "frontend/src/components/admin/panels/SuperAdminDashboard.jsx",
+      "source_location": "L6"
+    },
+    {
       "id": "frontend_src_components_admin_panels_validatornodespanel_validatornodespanel",
       "label": "ValidatorNodesPanel()",
       "_callable": true,
@@ -1243,6 +1303,66 @@
       "norm_label": "validatornodespanel()",
       "source_file": "frontend/src/components/admin/panels/ValidatorNodesPanel.jsx",
       "source_location": "L5"
+    },
+    {
+      "id": "frontend_src_components_admin_shared_empty",
+      "label": "Empty()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "empty()",
+      "source_file": "frontend/src/components/admin/Shared.jsx",
+      "source_location": "L40"
+    },
+    {
+      "id": "frontend_src_components_admin_shared_errornote",
+      "label": "ErrorNote()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "errornote()",
+      "source_file": "frontend/src/components/admin/Shared.jsx",
+      "source_location": "L49"
+    },
+    {
+      "id": "frontend_src_components_admin_shared_panelheader",
+      "label": "PanelHeader()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "panelheader()",
+      "source_file": "frontend/src/components/admin/Shared.jsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "frontend_src_components_admin_shared_statgrid",
+      "label": "StatGrid()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "statgrid()",
+      "source_file": "frontend/src/components/admin/Shared.jsx",
+      "source_location": "L23"
+    },
+    {
+      "id": "frontend_src_components_admin_shared_table",
+      "label": "Table()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "table()",
+      "source_file": "frontend/src/components/admin/Shared.jsx",
+      "source_location": "L59"
     },
     {
       "id": "frontend_src_main_root",
@@ -1694,35 +1814,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "downloadcsv()",
       "source_file": "frontend/src/api.js",
       "source_location": "L100"
-    },
-    {
-      "id": "frontend_src_api_fmttime",
-      "label": "fmtTime()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "fmttime()",
-      "source_file": "frontend/src/api.js",
-      "source_location": "L92"
-    },
-    {
-      "id": "frontend_src_api_riskclass",
-      "label": "riskClass()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "riskclass()",
-      "source_file": "frontend/src/api.js",
-      "source_location": "L95"
     },
     {
       "id": "frontend_src_api_scorecolor",
@@ -1730,35 +1826,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "scorecolor()",
       "source_file": "frontend/src/api.js",
       "source_location": "L98"
-    },
-    {
-      "id": "frontend_src_api_setadmintoken",
-      "label": "setAdminToken()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "setadmintoken()",
-      "source_file": "frontend/src/api.js",
-      "source_location": "L10"
-    },
-    {
-      "id": "frontend_src_api_setclienttoken",
-      "label": "setClientToken()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "setclienttoken()",
-      "source_file": "frontend/src/api.js",
-      "source_location": "L9"
     },
     {
       "id": "frontend_src_api_useoverview",
@@ -1766,95 +1838,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "useoverview()",
       "source_file": "frontend/src/api.js",
       "source_location": "L41"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_livesessions_livesessions",
-      "label": "LiveSessions()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "livesessions()",
-      "source_file": "frontend/src/components/admin/panels/LiveSessions.jsx",
-      "source_location": "L6"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_superadmindashboard_superadmindashboard",
-      "label": "SuperAdminDashboard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "superadmindashboard()",
-      "source_file": "frontend/src/components/admin/panels/SuperAdminDashboard.jsx",
-      "source_location": "L6"
-    },
-    {
-      "id": "frontend_src_components_admin_shared_empty",
-      "label": "Empty()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "empty()",
-      "source_file": "frontend/src/components/admin/Shared.jsx",
-      "source_location": "L40"
-    },
-    {
-      "id": "frontend_src_components_admin_shared_errornote",
-      "label": "ErrorNote()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "errornote()",
-      "source_file": "frontend/src/components/admin/Shared.jsx",
-      "source_location": "L49"
-    },
-    {
-      "id": "frontend_src_components_admin_shared_panelheader",
-      "label": "PanelHeader()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "panelheader()",
-      "source_file": "frontend/src/components/admin/Shared.jsx",
-      "source_location": "L8"
-    },
-    {
-      "id": "frontend_src_components_admin_shared_statgrid",
-      "label": "StatGrid()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "statgrid()",
-      "source_file": "frontend/src/components/admin/Shared.jsx",
-      "source_location": "L23"
-    },
-    {
-      "id": "frontend_src_components_admin_shared_table",
-      "label": "Table()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "table()",
-      "source_file": "frontend/src/components/admin/Shared.jsx",
-      "source_location": "L59"
     },
     {
       "id": "frontend_src_components_panels_analyticspanel_analyse",
@@ -1862,7 +1850,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "analyse()",
       "source_file": "frontend/src/components/panels/AnalyticsPanel.jsx",
@@ -1874,7 +1862,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "analyticspanel()",
       "source_file": "frontend/src/components/panels/AnalyticsPanel.jsx",
@@ -1886,7 +1874,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "attendancepanel()",
       "source_file": "frontend/src/components/panels/AttendancePanel.jsx",
@@ -1898,7 +1886,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "deriveattendance()",
       "source_file": "frontend/src/components/panels/AttendancePanel.jsx",
@@ -1910,7 +1898,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "tick()",
       "source_file": "frontend/src/components/panels/AttendancePanel.jsx",
@@ -1922,7 +1910,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "auditlogs()",
       "source_file": "frontend/src/components/panels/AuditLogs.jsx",
@@ -1934,7 +1922,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "clientdashboard()",
       "source_file": "frontend/src/components/panels/ClientDashboard.jsx",
@@ -1946,7 +1934,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "examsecurity()",
       "source_file": "frontend/src/components/panels/ExamSecurity.jsx",
@@ -1958,7 +1946,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "empty()",
       "source_file": "frontend/src/components/Shared.jsx",
@@ -1970,7 +1958,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "errornote()",
       "source_file": "frontend/src/components/Shared.jsx",
@@ -1982,7 +1970,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "panelheader()",
       "source_file": "frontend/src/components/Shared.jsx",
@@ -1994,7 +1982,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "statgrid()",
       "source_file": "frontend/src/components/Shared.jsx",
@@ -2006,11 +1994,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "table()",
       "source_file": "frontend/src/components/Shared.jsx",
       "source_location": "L55"
+    },
+    {
+      "id": "frontend_src_components_trustscorebadge_trustscorebadge",
+      "label": "TrustScoreBadge()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "AttendancePanel.jsx",
+      "file_type": "code",
+      "norm_label": "trustscorebadge()",
+      "source_file": "frontend/src/components/TrustScoreBadge.jsx",
+      "source_location": "L5"
     },
     {
       "id": "backend_app_blockchain_proof_blockchainprooflayer_init",
@@ -2273,6 +2273,28 @@
       "source_location": "L41"
     },
     {
+      "id": "frontend_src_api",
+      "label": "api.js",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "api.js",
+      "source_file": "frontend/src/api.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_api_configuredapibase",
+      "label": "configuredApiBase",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "configuredapibase",
+      "source_file": "frontend/src/api.js",
+      "source_location": "L12"
+    },
+    {
       "id": "frontend_src_clientapp",
       "label": "ClientApp.jsx",
       "_origin": "ast",
@@ -2284,15 +2306,70 @@
       "source_location": "L1"
     },
     {
-      "id": "frontend_src_components_admin_panels_bankingadmindashboard",
-      "label": "BankingAdminDashboard.jsx",
+      "id": "frontend_src_components_admin_adminlogin",
+      "label": "AdminLogin.jsx",
       "_origin": "ast",
       "community": 1,
       "community_name": "api",
       "file_type": "code",
-      "norm_label": "bankingadmindashboard.jsx",
-      "source_file": "frontend/src/components/admin/panels/BankingAdminDashboard.jsx",
+      "norm_label": "adminlogin.jsx",
+      "source_file": "frontend/src/components/admin/AdminLogin.jsx",
       "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_components_admin_adminlogin_fieldstyle",
+      "label": "fieldStyle",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "fieldstyle",
+      "source_file": "frontend/src/components/admin/AdminLogin.jsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_adminverificationreview",
+      "label": "AdminVerificationReview.jsx",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "adminverificationreview.jsx",
+      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_adminverificationreview_detailrowstyle",
+      "label": "detailRowStyle",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "detailrowstyle",
+      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_adminverificationreview_labelstyle",
+      "label": "labelStyle",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "labelstyle",
+      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
+      "source_location": "L13"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_adminverificationreview_valuestyle",
+      "label": "valueStyle",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "api",
+      "file_type": "code",
+      "norm_label": "valuestyle",
+      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
+      "source_location": "L18"
     },
     {
       "id": "frontend_src_components_authmodal",
@@ -2534,7 +2611,7 @@
       "file_type": "code",
       "norm_label": "inputstyle",
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L5"
+      "source_location": "L10"
     },
     {
       "id": "frontend_src_components_panels_profilepanel_labelstyle",
@@ -2545,7 +2622,7 @@
       "file_type": "code",
       "norm_label": "labelstyle",
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L17"
+      "source_location": "L23"
     },
     {
       "id": "frontend_src_components_panels_rewardssupportpanel",
@@ -2603,15 +2680,15 @@
       "source_location": "L1"
     },
     {
-      "id": "frontend_src_components_trustscorebadge",
-      "label": "TrustScoreBadge.jsx",
+      "id": "frontend_src_components_termsmodal_terms_clauses",
+      "label": "TERMS_CLAUSES",
       "_origin": "ast",
       "community": 1,
       "community_name": "api",
       "file_type": "code",
-      "norm_label": "trustscorebadge.jsx",
-      "source_file": "frontend/src/components/TrustScoreBadge.jsx",
-      "source_location": "L1"
+      "norm_label": "terms_clauses",
+      "source_file": "frontend/src/components/TermsModal.jsx",
+      "source_location": "L9"
     },
     {
       "id": "frontend_src_components_walletcard",
@@ -2680,28 +2757,6 @@
       "source_location": "L1"
     },
     {
-      "id": "frontend_src_components_admin_adminlogin",
-      "label": "AdminLogin.jsx",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "adminlogin.jsx",
-      "source_file": "frontend/src/components/admin/AdminLogin.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "frontend_src_components_admin_adminlogin_fieldstyle",
-      "label": "fieldStyle",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "fieldstyle",
-      "source_file": "frontend/src/components/admin/AdminLogin.jsx",
-      "source_location": "L5"
-    },
-    {
       "id": "frontend_src_components_admin_adminnavbar",
       "label": "AdminNavbar.jsx",
       "_origin": "ast",
@@ -2735,50 +2790,6 @@
       "source_location": "L8"
     },
     {
-      "id": "frontend_src_components_admin_panels_adminverificationreview",
-      "label": "AdminVerificationReview.jsx",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "adminverificationreview.jsx",
-      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_adminverificationreview_detailrowstyle",
-      "label": "detailRowStyle",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "detailrowstyle",
-      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_adminverificationreview_labelstyle",
-      "label": "labelStyle",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "labelstyle",
-      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
-      "source_location": "L13"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_adminverificationreview_valuestyle",
-      "label": "valueStyle",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "AdminApp.jsx",
-      "file_type": "code",
-      "norm_label": "valuestyle",
-      "source_file": "frontend/src/components/admin/panels/AdminVerificationReview.jsx",
-      "source_location": "L18"
-    },
-    {
       "id": "frontend_src_components_admin_panels_amlcompliancepanel",
       "label": "AMLCompliancePanel.jsx",
       "_origin": "ast",
@@ -2801,6 +2812,61 @@
       "source_location": "L64"
     },
     {
+      "id": "frontend_src_components_admin_panels_auditcompliance",
+      "label": "AuditCompliance.jsx",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "auditcompliance.jsx",
+      "source_file": "frontend/src/components/admin/panels/AuditCompliance.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_bankingadmindashboard",
+      "label": "BankingAdminDashboard.jsx",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "bankingadmindashboard.jsx",
+      "source_file": "frontend/src/components/admin/panels/BankingAdminDashboard.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_credentialmanagement",
+      "label": "CredentialManagement.jsx",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "credentialmanagement.jsx",
+      "source_file": "frontend/src/components/admin/panels/CredentialManagement.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_credentialmanagement_status_class",
+      "label": "STATUS_CLASS",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "status_class",
+      "source_file": "frontend/src/components/admin/panels/CredentialManagement.jsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "frontend_src_components_admin_panels_livesessions",
+      "label": "LiveSessions.jsx",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "livesessions.jsx",
+      "source_file": "frontend/src/components/admin/panels/LiveSessions.jsx",
+      "source_location": "L1"
+    },
+    {
       "id": "frontend_src_components_admin_panels_smartcontractregistry",
       "label": "SmartContractRegistry.jsx",
       "_origin": "ast",
@@ -2812,6 +2878,17 @@
       "source_location": "L1"
     },
     {
+      "id": "frontend_src_components_admin_panels_superadmindashboard",
+      "label": "SuperAdminDashboard.jsx",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "superadmindashboard.jsx",
+      "source_file": "frontend/src/components/admin/panels/SuperAdminDashboard.jsx",
+      "source_location": "L1"
+    },
+    {
       "id": "frontend_src_components_admin_panels_validatornodespanel",
       "label": "ValidatorNodesPanel.jsx",
       "_origin": "ast",
@@ -2820,6 +2897,17 @@
       "file_type": "code",
       "norm_label": "validatornodespanel.jsx",
       "source_file": "frontend/src/components/admin/panels/ValidatorNodesPanel.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_components_admin_shared",
+      "label": "admin/Shared.jsx",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "AdminApp.jsx",
+      "file_type": "code",
+      "norm_label": "admin/shared.jsx",
+      "source_file": "frontend/src/components/admin/Shared.jsx",
       "source_location": "L1"
     },
     {
@@ -2955,99 +3043,33 @@
       "source_location": ""
     },
     {
-      "id": "frontend_src_api",
-      "label": "api.js",
+      "id": "frontend_vercel",
+      "label": "vercel.json",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
+      "community": 18,
+      "community_name": "vercel.json",
       "file_type": "code",
-      "norm_label": "api.js",
-      "source_file": "frontend/src/api.js",
+      "norm_label": "vercel.json",
+      "source_file": "frontend/vercel.json",
       "source_location": "L1"
     },
     {
-      "id": "frontend_src_api_configuredapibase",
-      "label": "configuredApiBase",
+      "id": "frontend_vercel_rewrites",
+      "label": "rewrites",
       "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
+      "community": 18,
+      "community_name": "vercel.json",
       "file_type": "code",
-      "norm_label": "configuredapibase",
-      "source_file": "frontend/src/api.js",
-      "source_location": "L12"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_auditcompliance",
-      "label": "AuditCompliance.jsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "auditcompliance.jsx",
-      "source_file": "frontend/src/components/admin/panels/AuditCompliance.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_credentialmanagement",
-      "label": "CredentialManagement.jsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "credentialmanagement.jsx",
-      "source_file": "frontend/src/components/admin/panels/CredentialManagement.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_credentialmanagement_status_class",
-      "label": "STATUS_CLASS",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "status_class",
-      "source_file": "frontend/src/components/admin/panels/CredentialManagement.jsx",
-      "source_location": "L6"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_livesessions",
-      "label": "LiveSessions.jsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "livesessions.jsx",
-      "source_file": "frontend/src/components/admin/panels/LiveSessions.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "frontend_src_components_admin_panels_superadmindashboard",
-      "label": "SuperAdminDashboard.jsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "superadmindashboard.jsx",
-      "source_file": "frontend/src/components/admin/panels/SuperAdminDashboard.jsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "frontend_src_components_admin_shared",
-      "label": "admin/Shared.jsx",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "api.js",
-      "file_type": "code",
-      "norm_label": "admin/shared.jsx",
-      "source_file": "frontend/src/components/admin/Shared.jsx",
-      "source_location": "L1"
+      "norm_label": "rewrites",
+      "source_file": "frontend/vercel.json",
+      "source_location": "L2"
     },
     {
       "id": "frontend_src_components_panels_analyticspanel",
       "label": "AnalyticsPanel.jsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "analyticspanel.jsx",
       "source_file": "frontend/src/components/panels/AnalyticsPanel.jsx",
@@ -3058,7 +3080,7 @@
       "label": "AttendancePanel.jsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "attendancepanel.jsx",
       "source_file": "frontend/src/components/panels/AttendancePanel.jsx",
@@ -3069,7 +3091,7 @@
       "label": "CFG",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "cfg",
       "source_file": "frontend/src/components/panels/AttendancePanel.jsx",
@@ -3080,7 +3102,7 @@
       "label": "AuditLogs.jsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "auditlogs.jsx",
       "source_file": "frontend/src/components/panels/AuditLogs.jsx",
@@ -3091,7 +3113,7 @@
       "label": "ClientDashboard.jsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "clientdashboard.jsx",
       "source_file": "frontend/src/components/panels/ClientDashboard.jsx",
@@ -3102,7 +3124,7 @@
       "label": "ExamSecurity.jsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "examsecurity.jsx",
       "source_file": "frontend/src/components/panels/ExamSecurity.jsx",
@@ -3113,7 +3135,7 @@
       "label": "components/Shared.jsx",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "components/shared.jsx",
       "source_file": "frontend/src/components/Shared.jsx",
@@ -3124,11 +3146,22 @@
       "label": "td",
       "_origin": "ast",
       "community": 2,
-      "community_name": "api.js",
+      "community_name": "AttendancePanel.jsx",
       "file_type": "code",
       "norm_label": "td",
       "source_file": "frontend/src/components/Shared.jsx",
       "source_location": "L75"
+    },
+    {
+      "id": "frontend_src_components_trustscorebadge",
+      "label": "TrustScoreBadge.jsx",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "AttendancePanel.jsx",
+      "file_type": "code",
+      "norm_label": "trustscorebadge.jsx",
+      "source_file": "frontend/src/components/TrustScoreBadge.jsx",
+      "source_location": "L1"
     },
     {
       "id": "backend_app_models",
@@ -3172,7 +3205,7 @@
       "file_type": "code",
       "norm_label": "devdependencies",
       "source_file": "frontend/package.json",
-      "source_location": "L25"
+      "source_location": "L26"
     },
     {
       "id": "frontend_package_devdependencies_types_react",
@@ -3183,7 +3216,7 @@
       "file_type": "code",
       "norm_label": "@types/react",
       "source_file": "frontend/package.json",
-      "source_location": "L26"
+      "source_location": "L27"
     },
     {
       "id": "frontend_package_devdependencies_types_react_dom",
@@ -3194,7 +3227,7 @@
       "file_type": "code",
       "norm_label": "@types/react-dom",
       "source_file": "frontend/package.json",
-      "source_location": "L27"
+      "source_location": "L28"
     },
     {
       "id": "frontend_package_devdependencies_vite",
@@ -3205,7 +3238,7 @@
       "file_type": "code",
       "norm_label": "vite",
       "source_file": "frontend/package.json",
-      "source_location": "L29"
+      "source_location": "L30"
     },
     {
       "id": "frontend_package_devdependencies_vitejs_plugin_react",
@@ -3216,7 +3249,7 @@
       "file_type": "code",
       "norm_label": "@vitejs/plugin-react",
       "source_file": "frontend/package.json",
-      "source_location": "L28"
+      "source_location": "L29"
     },
     {
       "id": "frontend_package_name",
@@ -3252,6 +3285,17 @@
       "source_location": "L6"
     },
     {
+      "id": "frontend_package_scripts_build",
+      "label": "build",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "build",
+      "source_file": "frontend/package.json",
+      "source_location": "L9"
+    },
+    {
       "id": "frontend_package_scripts_build_admin",
       "label": "build:admin",
       "_origin": "ast",
@@ -3260,7 +3304,7 @@
       "file_type": "code",
       "norm_label": "build:admin",
       "source_file": "frontend/package.json",
-      "source_location": "L10"
+      "source_location": "L11"
     },
     {
       "id": "frontend_package_scripts_build_client",
@@ -3271,7 +3315,7 @@
       "file_type": "code",
       "norm_label": "build:client",
       "source_file": "frontend/package.json",
-      "source_location": "L9"
+      "source_location": "L10"
     },
     {
       "id": "frontend_package_scripts_dev",
@@ -3304,7 +3348,7 @@
       "file_type": "code",
       "norm_label": "preview",
       "source_file": "frontend/package.json",
-      "source_location": "L11"
+      "source_location": "L12"
     },
     {
       "id": "frontend_package_type",
@@ -3337,7 +3381,7 @@
       "file_type": "concept",
       "norm_label": "@types/react",
       "source_file": "frontend/package.json",
-      "source_location": "L26"
+      "source_location": "L27"
     },
     {
       "id": "types_react_dom",
@@ -3348,7 +3392,7 @@
       "file_type": "concept",
       "norm_label": "@types/react-dom",
       "source_file": "frontend/package.json",
-      "source_location": "L27"
+      "source_location": "L28"
     },
     {
       "id": "vite",
@@ -3359,7 +3403,7 @@
       "file_type": "concept",
       "norm_label": "vite",
       "source_file": "frontend/package.json",
-      "source_location": "L29"
+      "source_location": "L30"
     },
     {
       "id": "vitejs_plugin_react",
@@ -3370,7 +3414,7 @@
       "file_type": "concept",
       "norm_label": "@vitejs/plugin-react",
       "source_file": "frontend/package.json",
-      "source_location": "L28"
+      "source_location": "L29"
     },
     {
       "id": "readme",
@@ -3585,7 +3629,7 @@
       "file_type": "code",
       "norm_label": "dependencies",
       "source_file": "frontend/package.json",
-      "source_location": "L13"
+      "source_location": "L14"
     },
     {
       "id": "frontend_package_dependencies_autoprefixer",
@@ -3596,7 +3640,7 @@
       "file_type": "code",
       "norm_label": "autoprefixer",
       "source_file": "frontend/package.json",
-      "source_location": "L14"
+      "source_location": "L15"
     },
     {
       "id": "frontend_package_dependencies_class_variance_authority",
@@ -3607,7 +3651,7 @@
       "file_type": "code",
       "norm_label": "class-variance-authority",
       "source_file": "frontend/package.json",
-      "source_location": "L15"
+      "source_location": "L16"
     },
     {
       "id": "frontend_package_dependencies_clsx",
@@ -3618,7 +3662,7 @@
       "file_type": "code",
       "norm_label": "clsx",
       "source_file": "frontend/package.json",
-      "source_location": "L16"
+      "source_location": "L17"
     },
     {
       "id": "frontend_package_dependencies_framer_motion",
@@ -3629,7 +3673,7 @@
       "file_type": "code",
       "norm_label": "framer-motion",
       "source_file": "frontend/package.json",
-      "source_location": "L17"
+      "source_location": "L18"
     },
     {
       "id": "frontend_package_dependencies_lucide_react",
@@ -3640,7 +3684,7 @@
       "file_type": "code",
       "norm_label": "lucide-react",
       "source_file": "frontend/package.json",
-      "source_location": "L18"
+      "source_location": "L19"
     },
     {
       "id": "frontend_package_dependencies_postcss",
@@ -3651,7 +3695,7 @@
       "file_type": "code",
       "norm_label": "postcss",
       "source_file": "frontend/package.json",
-      "source_location": "L19"
+      "source_location": "L20"
     },
     {
       "id": "frontend_package_dependencies_react",
@@ -3662,7 +3706,7 @@
       "file_type": "code",
       "norm_label": "react",
       "source_file": "frontend/package.json",
-      "source_location": "L20"
+      "source_location": "L21"
     },
     {
       "id": "frontend_package_dependencies_react_dom",
@@ -3673,7 +3717,7 @@
       "file_type": "code",
       "norm_label": "react-dom",
       "source_file": "frontend/package.json",
-      "source_location": "L21"
+      "source_location": "L22"
     },
     {
       "id": "frontend_package_dependencies_tailwind_merge",
@@ -3684,7 +3728,7 @@
       "file_type": "code",
       "norm_label": "tailwind-merge",
       "source_file": "frontend/package.json",
-      "source_location": "L22"
+      "source_location": "L23"
     },
     {
       "id": "frontend_package_dependencies_tailwindcss",
@@ -3695,7 +3739,7 @@
       "file_type": "code",
       "norm_label": "tailwindcss",
       "source_file": "frontend/package.json",
-      "source_location": "L23"
+      "source_location": "L24"
     },
     {
       "id": "autoprefixer",
@@ -3706,7 +3750,7 @@
       "file_type": "concept",
       "norm_label": "autoprefixer",
       "source_file": "frontend/package.json",
-      "source_location": "L14"
+      "source_location": "L15"
     },
     {
       "id": "class_variance_authority",
@@ -3717,7 +3761,7 @@
       "file_type": "concept",
       "norm_label": "class-variance-authority",
       "source_file": "frontend/package.json",
-      "source_location": "L15"
+      "source_location": "L16"
     },
     {
       "id": "clsx",
@@ -3728,7 +3772,7 @@
       "file_type": "concept",
       "norm_label": "clsx",
       "source_file": "frontend/package.json",
-      "source_location": "L16"
+      "source_location": "L17"
     },
     {
       "id": "framer_motion",
@@ -3739,7 +3783,7 @@
       "file_type": "concept",
       "norm_label": "framer-motion",
       "source_file": "frontend/package.json",
-      "source_location": "L17"
+      "source_location": "L18"
     },
     {
       "id": "lucide_react",
@@ -3750,7 +3794,7 @@
       "file_type": "concept",
       "norm_label": "lucide-react",
       "source_file": "frontend/package.json",
-      "source_location": "L18"
+      "source_location": "L19"
     },
     {
       "id": "postcss",
@@ -3761,7 +3805,7 @@
       "file_type": "concept",
       "norm_label": "postcss",
       "source_file": "frontend/package.json",
-      "source_location": "L19"
+      "source_location": "L20"
     },
     {
       "id": "react",
@@ -3772,7 +3816,7 @@
       "file_type": "concept",
       "norm_label": "react",
       "source_file": "frontend/package.json",
-      "source_location": "L20"
+      "source_location": "L21"
     },
     {
       "id": "react_dom",
@@ -3783,7 +3827,7 @@
       "file_type": "concept",
       "norm_label": "react-dom",
       "source_file": "frontend/package.json",
-      "source_location": "L21"
+      "source_location": "L22"
     },
     {
       "id": "tailwind_merge",
@@ -3794,7 +3838,7 @@
       "file_type": "concept",
       "norm_label": "tailwind-merge",
       "source_file": "frontend/package.json",
-      "source_location": "L22"
+      "source_location": "L23"
     },
     {
       "id": "tailwindcss",
@@ -3805,7 +3849,7 @@
       "file_type": "concept",
       "norm_label": "tailwindcss",
       "source_file": "frontend/package.json",
-      "source_location": "L23"
+      "source_location": "L24"
     },
     {
       "id": "any",
@@ -4997,7 +5041,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L67",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -5033,7 +5077,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "frontend/src/components/TermsModal.jsx",
-      "source_location": "L22",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -6173,7 +6217,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -6185,7 +6229,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -6197,7 +6241,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -6209,7 +6253,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -6221,7 +6265,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -6233,7 +6277,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -6245,7 +6289,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -6257,7 +6301,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -6269,7 +6313,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -6281,7 +6325,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -6293,7 +6337,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -6305,7 +6349,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -6317,7 +6361,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
@@ -6329,7 +6373,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -7733,7 +7777,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L3",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -7769,7 +7813,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/TermsModal.jsx",
-      "source_location": "L3",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -8849,7 +8893,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L3",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -8885,7 +8929,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "frontend/src/components/TermsModal.jsx",
-      "source_location": "L3",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -10180,7 +10224,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -10202,7 +10246,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -10257,7 +10301,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
@@ -10268,7 +10312,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -10279,7 +10323,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -10290,7 +10334,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -10301,7 +10345,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -10312,7 +10356,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -10323,7 +10367,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -10334,7 +10378,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -10345,7 +10389,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -10356,7 +10400,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -10367,7 +10411,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -10378,7 +10422,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -10389,7 +10433,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -10400,12 +10444,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0
     },
     {
       "source": "frontend_package_scripts",
-      "target": "frontend_package_scripts_build_admin",
+      "target": "frontend_package_scripts_build_client",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10416,13 +10460,24 @@
     },
     {
       "source": "frontend_package_scripts",
-      "target": "frontend_package_scripts_preview",
+      "target": "frontend_package_scripts_build_admin",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/package.json",
       "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_package_scripts",
+      "target": "frontend_package_scripts_preview",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/package.json",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -10449,7 +10504,7 @@
     },
     {
       "source": "frontend_package_scripts",
-      "target": "frontend_package_scripts_build_client",
+      "target": "frontend_package_scripts_build",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10906,7 +10961,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/components/AuthModal.jsx",
-      "source_location": "L231",
+      "source_location": "L240",
       "weight": 1.0
     },
     {
@@ -11219,13 +11274,24 @@
     },
     {
       "source": "frontend_src_components_panels_profilepanel",
+      "target": "frontend_src_components_panels_profilepanel_inputstyle",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_panels_profilepanel",
       "target": "frontend_src_components_panels_profilepanel_labelstyle",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L17",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -11236,18 +11302,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L27",
-      "weight": 1.0
-    },
-    {
-      "source": "frontend_src_components_panels_profilepanel",
-      "target": "frontend_src_components_panels_profilepanel_inputstyle",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "frontend/src/components/panels/ProfilePanel.jsx",
-      "source_location": "L5",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -11368,7 +11423,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "frontend/src/components/TermsModal.jsx",
-      "source_location": "L5",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_termsmodal",
+      "target": "frontend_src_components_termsmodal_terms_clauses",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/src/components/TermsModal.jsx",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -11435,6 +11501,17 @@
       "confidence_score": 1.0,
       "source_file": "frontend/src/motion.js",
       "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_vercel",
+      "target": "frontend_vercel_rewrites",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "frontend/vercel.json",
+      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -12709,5 +12786,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "65373b898d95f2cc2d91521dd2ee791e2e3f276e"
+  "built_at_commit": "d8788df2b33843fd082ac240671866d1d6cee97a"
 }

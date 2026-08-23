@@ -49,43 +49,48 @@ export default function AuthModal({ onAuthSuccess }) {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 9999,
-      background: 'rgba(20,30,48,0.55)',
-      backdropFilter: 'blur(8px)',
+      background: 'rgba(10, 18, 30, 0.75)',
+      backdropFilter: 'blur(12px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '1rem',
+      animation: 'fadeIn 0.25s ease-out'
     }}>
       <div style={{
         background: 'var(--bg-card)',
-        borderRadius: 20,
+        borderRadius: 24,
         padding: '2.25rem',
-        width: '100%', maxWidth: 440,
-        boxShadow: 'var(--shadow-lg)',
+        width: '100%', maxWidth: 460,
+        boxShadow: '0 25px 70px rgba(0,0,0,0.35), 0 0 30px rgba(26, 153, 117, 0.15)',
         border: '1px solid var(--border)',
-        animation: 'modalSlideUp 0.28s cubic-bezier(0.16,1,0.3,1)',
+        animation: 'modalSlideUp 0.3s cubic-bezier(0.16,1,0.3,1)',
+        color: 'var(--text-main)',
+        transition: 'background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease'
       }}>
         {/* Logo + title */}
-        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.4rem' }}>
           <div style={{
-            display: 'inline-flex', padding: '0.85rem',
-            background: 'rgba(26,153,117,0.1)',
-            borderRadius: 16, marginBottom: '0.85rem',
-            border: '1px solid rgba(26,153,117,0.2)'
+            display: 'inline-flex', padding: '0.9rem',
+            background: 'linear-gradient(135deg, rgba(26,153,117,0.18), rgba(26,153,117,0.06))',
+            borderRadius: 20, marginBottom: '0.85rem',
+            border: '1px solid rgba(26,153,117,0.3)',
+            boxShadow: '0 0 20px rgba(26,153,117,0.25)'
           }}>
-            <Landmark size={30} color="#1a9975" />
+            <Landmark size={32} color="#1a9975" />
           </div>
-          <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-main)', margin: 0 }}>
-            {mode === 'login' ? 'Welcome to Nexus BlockBank' : 'Create Your Account'}
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-main)', margin: 0, letterSpacing: '-0.02em' }}>
+            {mode === 'login' ? 'Nexus BlockBank Portal' : 'Open Institutional Account'}
           </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', marginTop: '0.3rem' }}>
-            Hyperledger Besu · ZK-KYC · EIP-712 Secured
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', marginTop: '0.35rem' }}>
+            Sepolia zk-Rollup · ZK-KYC Protocol · EIP-712 Secured
           </p>
         </div>
 
         {/* Mode toggle */}
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr',
-          background: 'var(--bg-page)', borderRadius: 10,
-          padding: '0.2rem', marginBottom: '1.25rem',
+          background: 'var(--bg-page)', borderRadius: 12,
+          padding: '0.25rem', marginBottom: '1.25rem',
+          border: '1px solid var(--border)'
         }}>
           {[['login', 'Sign In', LogIn], ['signup', 'Register', UserPlus]].map(([m, label, Icon]) => (
             <button
@@ -93,17 +98,17 @@ export default function AuthModal({ onAuthSuccess }) {
               type="button"
               onClick={() => { setMode(m); setError(''); }}
               style={{
-                padding: '0.55rem', border: 'none', borderRadius: 8,
-                cursor: 'pointer', fontSize: '0.85rem',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem',
+                padding: '0.6rem', border: 'none', borderRadius: 10,
+                cursor: 'pointer', fontSize: '0.86rem',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
                 background: mode === m ? 'var(--bg-card)' : 'transparent',
-                color: mode === m ? '#1a9975' : 'var(--text-muted)',
+                color: mode === m ? '#1a9975' : 'var(--text-secondary)',
                 fontWeight: mode === m ? 700 : 500,
-                boxShadow: mode === m ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
-                transition: 'all 0.18s ease',
+                boxShadow: mode === m ? '0 2px 8px rgba(0,0,0,0.1), 0 0 10px rgba(26,153,117,0.15)' : 'none',
+                transition: 'all 0.2s ease',
               }}
             >
-              <Icon size={14} /> {label}
+              <Icon size={15} /> {label}
             </button>
           ))}
         </div>
@@ -111,24 +116,25 @@ export default function AuthModal({ onAuthSuccess }) {
         {/* Error */}
         {error && (
           <div style={{
-            background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)',
-            color: '#dc2626', padding: '0.65rem 0.85rem', borderRadius: 8,
-            marginBottom: '1rem', fontSize: '0.82rem'
+            background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)',
+            color: '#ef4444', padding: '0.7rem 0.9rem', borderRadius: 10,
+            marginBottom: '1rem', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.4rem'
           }}>
-            {error}
+            <span>⚠️</span> {error}
           </div>
         )}
 
         {/* Form */}
-        <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+        <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
           <Labelled label="Username">
             <input
               style={fieldStyle}
               value={form.username}
               onChange={set('username')}
+              placeholder="e.g. aarav_sharma"
               required
               autoComplete="username"
-              onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 0 3px rgba(26,153,117,0.12)'; }}
+              onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 15px rgba(26,153,117,0.25)'; }}
               onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }}
             />
           </Labelled>
@@ -140,10 +146,11 @@ export default function AuthModal({ onAuthSuccess }) {
                 type={showPassword ? 'text' : 'password'}
                 value={form.password}
                 onChange={set('password')}
+                placeholder="••••••••••••"
                 required
                 autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                 minLength={8}
-                onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 0 3px rgba(26,153,117,0.12)'; }}
+                onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 15px rgba(26,153,117,0.25)'; }}
                 onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }}
               />
               <button
@@ -151,7 +158,7 @@ export default function AuthModal({ onAuthSuccess }) {
                 onClick={() => setShowPassword(!showPassword)}
                 style={{
                   position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)',
-                  background: 'none', border: 'none', color: '#9ca3af', cursor: 'pointer',
+                  background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0
                 }}
               >
@@ -162,19 +169,19 @@ export default function AuthModal({ onAuthSuccess }) {
 
           {mode === 'signup' && (
             <>
-              <Labelled label="Full Name">
-                <input style={fieldStyle} value={form.full_name} onChange={set('full_name')} required
-                  onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 0 3px rgba(26,153,117,0.12)'; }}
+              <Labelled label="Full Legal Name">
+                <input style={fieldStyle} value={form.full_name} onChange={set('full_name')} placeholder="Aarav Sharma" required
+                  onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 15px rgba(26,153,117,0.25)'; }}
                   onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} />
               </Labelled>
               <Labelled label="Institutional Email">
-                <input style={fieldStyle} type="email" value={form.email} onChange={set('email')} required
-                  onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 0 3px rgba(26,153,117,0.12)'; }}
+                <input style={fieldStyle} type="email" value={form.email} onChange={set('email')} placeholder="name@nexusbank.example" required
+                  onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 15px rgba(26,153,117,0.25)'; }}
                   onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} />
               </Labelled>
-              <Labelled label="Department">
-                <input style={fieldStyle} value={form.department} onChange={set('department')} required
-                  onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 0 3px rgba(26,153,117,0.12)'; }}
+              <Labelled label="Department / Division">
+                <input style={fieldStyle} value={form.department} onChange={set('department')} placeholder="Private Wealth & Digital Vault" required
+                  onFocus={e => { e.target.style.borderColor = '#1a9975'; e.target.style.boxShadow = '0 0 15px rgba(26,153,117,0.25)'; }}
                   onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} />
               </Labelled>
             </>
@@ -183,44 +190,46 @@ export default function AuthModal({ onAuthSuccess }) {
           <button
             type="submit"
             disabled={busy}
+            className="neon-glow-hover"
             style={{
-              width: '100%', padding: '0.75rem',
-              background: busy ? '#9ca3af' : '#1a9975',
-              color: '#fff', border: 'none', borderRadius: 10,
-              fontWeight: 700, fontSize: '0.9rem', cursor: busy ? 'not-allowed' : 'pointer',
+              width: '100%', padding: '0.85rem',
+              background: busy ? 'var(--border)' : 'linear-gradient(135deg, #1a9975, #127c5e)',
+              color: '#fff', border: 'none', borderRadius: 12,
+              fontWeight: 700, fontSize: '0.92rem', cursor: busy ? 'not-allowed' : 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-              boxShadow: busy ? 'none' : '0 4px 14px rgba(26,153,117,0.3)',
-              transition: 'all 0.18s ease',
-              marginTop: '0.2rem',
+              boxShadow: busy ? 'none' : '0 4px 18px rgba(26,153,117,0.4), 0 0 15px rgba(26,153,117,0.2)',
+              transition: 'all 0.25s cubic-bezier(0.16,1,0.3,1)',
+              marginTop: '0.35rem',
             }}
           >
-            {busy ? 'Verifying…' : <>{mode === 'login' ? 'Sign In' : 'Create Account'} <ArrowRight size={16} /></>}
+            {busy ? 'Verifying Credentials…' : <>{mode === 'login' ? 'Authenticate & Sign In' : 'Create Customer Vault'} <ArrowRight size={17} /></>}
           </button>
         </form>
 
-        <p style={{ textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '1rem', marginBottom: '0.75rem' }}>
-          Protected by ZK-Proof Biometric Authentication · EIP-712 Signed Sessions
+        <p style={{ textAlign: 'center', fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '1.1rem', marginBottom: '0.85rem' }}>
+          Protected by ZK-Proof Biometric Telemetry · EIP-712 Signed Sessions
         </p>
 
-        <div style={{ paddingTop: '0.75rem', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
+        <div style={{ paddingTop: '0.85rem', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
           <a
             href={window.location.port === '3000' ? 'http://localhost:3001' : '/admin'}
             style={{
               background: 'rgba(109, 40, 217, 0.08)',
-              border: '1px solid rgba(109, 40, 217, 0.25)',
-              color: '#6d28d9',
-              padding: '0.4rem 0.85rem',
-              borderRadius: '8px',
-              fontSize: '0.75rem',
-              fontWeight: 600,
+              border: '1px solid rgba(109, 40, 217, 0.3)',
+              color: '#8b5cf6',
+              padding: '0.45rem 0.95rem',
+              borderRadius: '10px',
+              fontSize: '0.76rem',
+              fontWeight: 700,
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              transition: 'all 0.15s ease'
+              gap: '0.4rem',
+              transition: 'all 0.2s ease'
             }}
+            className="neon-purple-hover"
           >
-            🛡️ Go to Admin Governance Portal (Port 3001)
+            🛡️ Central Bank Regulatory Governance Portal (Port 3001)
           </a>
         </div>
       </div>

@@ -46,38 +46,80 @@
   --font-mono: 'SF Mono', 'Fira Code', monospace;
 }
 
-/* ============================================================
-   NEXUS BLOCKBANK — Admin / Regulatory Console
-   Neatclever-inspired Light Theme  ·  Primary: #1a9975 (teal-green)
-   Admin accent: #6d28d9 (authority purple) mixed with green
-   Background: #f0f2f5  ·  Cards: #ffffff
-   ============================================================ */
+body.dark-mode {
+  --bg-page: #0f172a;
+  --bg-card: #1e293b;
+  --bg-sidebar: #1e293b;
+  --bg-card-hover: #243248;
+  --text-main: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --border: #334155;
+  --border-color: #334155;
+  --border-active: rgba(109, 40, 217, 0.65);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 35px rgba(0, 0, 0, 0.45);
+}
 
- .badge, .nav-item, input, select, button, .glass-panel, table tr {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  transition: background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.badge, .nav-item, input, select, button, .glass-panel, .card, .card-box, table tr {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ============================================================
-   Glass panels → clean white cards
+   Glass panels & Cards
    ============================================================ */
-.glass-panel {
+.glass-panel, .card, .card-box {
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   box-shadow: var(--shadow-card);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel:hover {
-  box-shadow: var(--shadow-lg);
-  border-color: var(--border-active);
+.glass-panel:hover, .card:hover, .card-box:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15), 0 0 20px rgba(109, 40, 217, 0.3);
+  border-color: rgba(109, 40, 217, 0.5);
   transform: translateY(-2px);
 }
 
+body.dark-mode .glass-panel:hover,
+body.dark-mode .card:hover,
+body.dark-mode .card-box:hover {
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(109, 40, 217, 0.4);
+  border-color: rgba(109, 40, 217, 0.7);
+}
+
 .glass-panel::before,
-.glass-panel::after { display: none; }
+.glass-panel::after,
+.card::before,
+.card::after { display: none; }
+
+/* Neon Glow classes */
+.neon-glow-hover:hover {
+  box-shadow: 0 0 20px rgba(109, 40, 217, 0.55), 0 0 35px rgba(109, 40, 217, 0.25) !important;
+  border-color: rgba(109, 40, 217, 0.8) !important;
+  transform: translateY(-2px) !important;
+}
+
+.neon-purple-hover:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), 0 0 35px rgba(139, 92, 246, 0.25) !important;
+  border-color: rgba(139, 92, 246, 0.8) !important;
+}
+
+.neon-green-hover:hover {
+  box-shadow: 0 0 20px rgba(26, 153, 117, 0.5), 0 0 35px rgba(26, 153, 117, 0.25) !important;
+  border-color: rgba(26, 153, 117, 0.8) !important;
+}
 
 .glass-panel.motion-panel {
   opacity: 0;
@@ -93,6 +135,7 @@
 @media (prefers-reduced-motion: reduce) {
   .glass-panel,
   .glass-panel:hover,
+  .card:hover,
   .glass-panel.motion-panel {
     opacity: 1; transform: none; transition: none;
   }
